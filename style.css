@@ -14,24 +14,40 @@
 }
 
 body {
-    background-color: #000505;
+    background-color: #000000;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 15px;
     font-family: "Kode Mono", monospace;
     font-size: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Align items to the left */
 }
 
 .nav-item {
     margin-right: 10px;
     color: #68BAA3;
+}
+
+@keyframes fadeInBackground {
+    from {
+        background-color: transparent;
+    }
+    to {
+        background-color: rgba(66, 66, 66, 0.25);
+    }
 }
 
 .nav-item a {
@@ -41,15 +57,17 @@ ul {
     margin: 0px;
     z-index: 100;
     position: relative;
+    transition: background-color 0.5s ease;
 }
 
 .nav-item a:hover {
     color: #ffffff;
-    background-color: rgba(66, 66, 66, 0.25);
+    animation: fadeInBackground 0.5s forwards; /* Apply the animation on hover */
 }
 
 .title {
     font-size: 80px;
+    background-color: black;
     color: #e2e7dc;
     text-align: center;
     padding-bottom: 0;
@@ -57,6 +75,7 @@ ul {
 }
 
 .subtitle {
+    background-color: black;
     font-size: 40px;
     color: #a59cd9;
     text-align: center;
@@ -65,8 +84,8 @@ ul {
 }
 
 .hero {
-    background-image: url('/endless-constellation.png');
-    background-position: center;
+    background-image: url('/confetti-doodles.png');
+    background-position: fixed;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -89,4 +108,69 @@ ul {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    color: #e2e7dc;
+    font-size: 20px;
+}
+
+.center-aligned {
+    align-items: center; /* This will center the content horizontally within the .center-aligned column */
+}
+
+.carousel {
+    position: relative;
+    max-width: 450px;
+    margin: auto;
+}
+
+.carousel-images img {
+    width: 100%;
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+h2 {
+    margin: 0;
+    padding: 2px;
+    color: #55ffff;
+}
+p {
+    margin: 0;
+    padding: 2px;
 }
