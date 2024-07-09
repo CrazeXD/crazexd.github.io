@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishabh Garg</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="static/js/script.js"></script>
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
     <div class="hero">
@@ -13,7 +13,15 @@
             <ul>
                 <li class="nav-item"><a href="index.html">Home</a></li>
                 <li class="nav-item"><a href="projects.html">Projects</a></li>
-                <li class="nav-item"><a href="contact.html">Contact</a></li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+                <li class="nav-item dropdown">
+                    <a href="index.html">My Work</a>
+                    <div class="dropdown-content">
+                        <a href="https://orcid.org/0009-0006-4318-8770"><img src="static/icons/orcid.logo.icon.svg" alt="ORCID Icon"> ORCID</a>
+                        <a href="https://www.linkedin.com/in/rishabh-garg-105b67238/"><img src="static/icons/LinkedIn_icon.svg.png" alt="LinkedIn Icon"> LinkedIn</a>
+                        <a href="https://github.com/CrazeXD"><img src="static/icons/github-mark-white.svg" alt="GitHub Icon"> GitHub</a>
+                    </div>
+                </li>
             </ul>
         </nav>
         <div class="container vertical-center">
@@ -23,10 +31,9 @@
     </div>
     <div>
         <div class="columns">
-            <div class="column">
-                <h2 class="section-title kode-mono">About Me</h2>
-                <p class="section-content play">Hi! My name is Rishabh Garg, and I am a high school student, developer, and researcher.</p>
-                <p class="section-content play">My areas of interest include computer science and theoretical physics, and I have a particular passion for the wave sciences.</p>
+            <div class="column center-aligned">
+                <h2 class="kode-mono">About Me</h2>
+                <p class="section-content play" style="width: 75%;">Hi! My name is Rishabh Garg, and I am a high school student, developer, and researcher located in Southern California. My areas of interest include computer science and theoretical physics, and I have a particular passion for the wave sciences.</p>
             </div>
             <div class="column center-aligned">
                 <div class="carousel">
@@ -35,9 +42,22 @@
                         <img src="https://placehold.co/900x600" alt="Placeholder 2" style="display:none;">
                         <img src="https://placehold.co/450x300" alt="Placeholder 3" style="display:none;">
                     </div>
-                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                    <a class="prev" onclick="changeSlide(-1)" style="color: #ca9cff">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)" style="color: #ca9cff">&#10095;</a>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!--Contact-->
+    <div id="contact" class="contact">
+        <div class="columns">
+            <div class="column center-aligned">
+                <a href="mailto:26rishabhgarg@gmail.com" class="purple-button play">Email Me</a>
+                <a href="https://www.linkedin.com/in/rishabh-garg-105b67238/" class="green-button play">LinkedIn</a>
+            </div>
+            <div class="column center-aligned">
+                <h2 class="kode-mono">Contact</h2>
+                <p class="section-content play" style="width: 75%;">If you would like to get in touch with me, please feel free to reach out to me via email or LinkedIn. I am always open to new opportunities and collaborations!</p>
             </div>
         </div>
     </div>
