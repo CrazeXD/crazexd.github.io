@@ -1,70 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Garg</title>
-    <script src="static/js/script.js"></script>
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>Rishabh Garg | Student Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"/>
+    <style>
+        :root {
+            --primary-color: #2D3250;
+            --secondary-color: #424769;
+            --accent-color: #7077A1;
+            --text-color: #181818;
+            --bg-color: #F6F6F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero {
+            min-height: 100vh;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .accomplishments-list {
+            list-style: none;
+        }
+
+        .accomplishment-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div class="hero">
+    <header>
         <nav>
-            <ul>
-                <li class="nav-item"><a href="index.html">Home</a></li>
-                <li class="nav-item"><a href="projects.html">Projects</a></li>
-                <li class="nav-item"><a href="#contact">Contact</a></li>
-                <li class="nav-item dropdown">
-                    <a href="index.html">Profiles</a>
-                    <div class="dropdown-content">
-                        <a href="https://orcid.org/0009-0006-4318-8770"><img src="static/icons/orcid.logo.icon.svg" alt="ORCID Icon"> ORCID</a>
-                        <a href="https://www.linkedin.com/in/rishabh-garg-105b67238/"><img src="static/icons/LinkedIn_icon.svg.png" alt="LinkedIn Icon"> LinkedIn</a>
-                        <a href="https://github.com/CrazeXD"><img src="static/icons/github-mark-white.svg" alt="GitHub Icon"> GitHub</a>
-                    </div>
-                </li>
+            <a href="#" class="logo">RG</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#accomplishments">Accomplishments</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="container vertical-center">
-            <h1 class="title">Rishabh Garg</h1>
-            <p class="play subtitle"><strong>Student Developer and Researcher</strong></p>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Rishabh Garg</h1>
+            <p>Student Researcher | Aspiring Physicist</p>
         </div>
-    </div>
-    <div>
-        <div class="columns">
-            <div class="column center-aligned">
-                <h2 class="kode-mono">About Me</h2>
-                <p class="section-content play" style="width: 75%;">Hi! My name is Rishabh Garg, and I am a high school student, developer, and researcher located in Southern California. My areas of interest include computer science and theoretical physics, particularily quantam mechanics and the wave sciences.</p>
-                <p class="section-content play" style="width: 75%">I am currently doing research at University of Illinois Urbana-Champaign under Dr. Hari Sundaram in the Crowd Dynamics Lab.</p>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>I am a passionate high school student with an interest in Physics, namely wave science and quantum physics.
+        </p>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Research Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Crowd Dynamics Lab - Terms of Service Analysis</h3>
+                <p>Conducted research on online platforms' terms of services using advanced network analysis methods.
+                    Developed novel algorithms to uncover hidden patterns and improve user transparency.</p>
             </div>
-            <div class="column center-aligned">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="https://placehold.co/450x300" alt="Placeholder 1">
-                        <img src="https://placehold.co/900x600" alt="Placeholder 2" style="display:none;">
-                        <img src="https://placehold.co/450x300" alt="Placeholder 3" style="display:none;">
-                    </div>
-                    <a class="prev" onclick="changeSlide(-1)" style="color: #ca9cff">&#10094;</a>
-                    <a class="next" onclick="changeSlide(1)" style="color: #ca9cff">&#10095;</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Contact-->
-    <div id="contact" class="contact">
-        <div class="columns">
-            <div class="column center-aligned is-horizontal">
-                <a href="mailto:26rishabhgarg@gmail.com" class="purple-button play">Email Me</a>
-                <a href="https://www.linkedin.com/in/rishabh-garg-105b67238/" class="green-button play">LinkedIn</a>
-            </div>
-            <div class="column center-aligned">
-                <h2 class="kode-mono">Contact</h2>
-                <p class="section-content play" style="width: 75%;">If you would like to get in touch with me, please feel free to reach out to me via email or LinkedIn. I am always open to new opportunities and collaborations!</p>
+            <div class="project-card">
+                <h3>Aspiring Scholars Directed Research Program - U.S. College Political Polarization Study</h3>
+                <p>Conducted research on the political leanings of colleges within the United States, and their roles in
+                    local county voting patterns during presidential elections. Utilized the Bipartisan Press API to
+                    numerically categorize semantic language, and performed various statistical tests in Python.</p>
             </div>
         </div>
-    </div>
-    <footer class="footer">
-        <p class="play">© 2024 Rishabh Garg</p>
-        <p class="play">Source code for this site is available <a href="https://github.com/CrazeXD/crazexd.github.io">here</a>.</p>
+    </section>
+
+    <section id="accomplishments">
+        <h2 class="section-title">Accomplishments</h2>
+        <ul class="accomplishments-list">
+            <li class="accomplishment-item">
+                <h3>Presidential Gold Medal for Volunteering</h3>
+                <p>Awarded three times for completing over 400 hours of community service</p>
+            </li>
+            <li class="accomplishment-item">
+                <h3>Science Olympiad Excellence</h3>
+                <p>Developed extensive knowledge in wave sciences, electromagnetic spectrum, and underwater acoustics
+                </p>
+            </li>
+            <li class="accomplishment-item">
+                <h3>Research Publications</h3>
+                <p>Published groundbreaking research in crowd dynamics and network analysis</p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contacts and Profiles</h2>
+        <div class="contact-container">
+            <div class="contact-item">
+                <h3><i class="fa-solid fa-inbox"></i> Email</h3>
+                <p><a href="mailto:rishabh@rishabhgarg.dev">rishabh@rishabhgarg.dev</a></p>
+            </div>
+            <div class="contact-item">
+                <h3><i class="fa-brands fa-github"></i> GitHub</h3>
+                <p><a href="https://github.com/CrazeXD">github.com/CrazeXD</a></p>
+            </div>
+            <div class="contact-item">
+                <h3><i class="fa-brands fa-linkedin"></i> LinkedIn</h3>
+                <p><a href="https://www.linkedin.com/in/rishabh-garg-105b67238/"
+                        target="_blank">www.linkedin.com/in/rishabh-garg-105b67238/</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Rishabh Garg. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.to('.hero h1', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5
+        });
+
+        gsap.to('.hero p', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.8
+        });
+
+        // Accomplishments animations
+        gsap.utils.toArray('.accomplishment-item').forEach((item, i) => {
+            gsap.to(item, {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                delay: i * 0.2,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top bottom-=100',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
