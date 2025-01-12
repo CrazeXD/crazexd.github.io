@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishabh Garg | Student Researcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"/>
     <style>
         :root {
             --primary-color: #2D3250;
-            --secondary-color: #424769;
-            --accent-color: #7077A1;
+            --secondary-color: #7B66FF;
+            --accent-color: #5FBDFF;
             --text-color: #181818;
-            --bg-color: #F6F6F6;
+            --bg-color: #f8f9fa;
         }
 
         * {
@@ -26,20 +26,49 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Cool animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+                linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+            background-size: 20px 20px;
+            animation: backgroundMove 15s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+            }
+
+            100% {
+                background-position: 20px 20px, 30px 20px, 30px 10px, 20px 30px;
+            }
         }
 
         header {
-            background-color: var(--primary-color);
-            padding: 1.5rem 2rem;
+            background: rgba(45, 50, 80, 0.95);
+            padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -52,9 +81,27 @@
 
         .logo {
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: translateX(0);
         }
 
         .nav-links {
@@ -67,21 +114,46 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a:hover {
-            color: rgba(255, 255, 255, 0.8);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
         }
 
         .hero {
             min-height: 100vh;
-            color: var(--text-color);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(123, 102, 255, 0.1), rgba(95, 189, 255, 0.1));
+            z-index: -1;
         }
 
         .hero-content {
@@ -90,30 +162,46 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             opacity: 0;
             transform: translateY(30px);
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 2rem;
             opacity: 0;
             transform: translateY(30px);
+            color: var(--secondary-color);
         }
 
         section {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 3rem;
             text-align: center;
             color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
         }
 
         .projects-grid {
@@ -124,14 +212,33 @@
 
         .project-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
 
         .accomplishments-list {
@@ -140,12 +247,32 @@
 
         .accomplishment-item {
             background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transform: translateX(-30px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .accomplishment-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+
+        .accomplishment-item:hover::after {
+            transform: scaleY(1);
         }
 
         .contact-container {
@@ -158,8 +285,30 @@
         .contact-item {
             padding: 2rem;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-color);
         }
 
         footer {
@@ -168,6 +317,40 @@
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        /* Cool cursor effect */
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor-outline {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
         }
 
         @media (max-width: 768px) {
@@ -180,17 +363,23 @@
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 4rem 1rem;
+            }
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+
     <header>
         <nav>
             <a href="#" class="logo">RG</a>
@@ -213,19 +402,20 @@
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <p>I am a passionate high school student with an interest in Physics, namely wave science and quantum physics.
-        </p>
+            My journey in science has led me to explore fascinating phenomena and conduct meaningful research that
+            pushes the boundaries of our understanding.</p>
     </section>
 
     <section id="projects">
         <h2 class="section-title">Research Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <h3>Crowd Dynamics Lab - Terms of Service Analysis</h3>
+                <h3>Crowd Dynamics Lab</h3>
                 <p>Conducted research on online platforms' terms of services using advanced network analysis methods.
                     Developed novel algorithms to uncover hidden patterns and improve user transparency.</p>
             </div>
             <div class="project-card">
-                <h3>Aspiring Scholars Directed Research Program - U.S. College Political Polarization Study</h3>
+                <h3>U.S. College Political Polarization Study</h3>
                 <p>Conducted research on the political leanings of colleges within the United States, and their roles in
                     local county voting patterns during presidential elections. Utilized the Bipartisan Press API to
                     numerically categorize semantic language, and performed various statistical tests in Python.</p>
@@ -241,13 +431,12 @@
                 <p>Awarded three times for completing over 400 hours of community service</p>
             </li>
             <li class="accomplishment-item">
-                <h3>Science Olympiad Excellence</h3>
-                <p>Developed extensive knowledge in wave sciences, electromagnetic spectrum, and underwater acoustics
-                </p>
+                <h3>Top Player in National Cyber League Spring 2024 Individual Game (Top 500)</h3>
+                <p>Competed in the college standard bracket with 7400 participants</p>
             </li>
             <li class="accomplishment-item">
-                <h3>Research Publications</h3>
-                <p>Published groundbreaking research in crowd dynamics and network analysis</p>
+                <h3>Research Poster for IEEE MIT Undergraduate Research Technology Conference</h3>
+                <p>Author to a research poster presented at an MIT Conference sponsored by the IEEE</p>
             </li>
         </ul>
     </section>
@@ -256,15 +445,18 @@
         <h2 class="section-title">Contacts and Profiles</h2>
         <div class="contact-container">
             <div class="contact-item">
-                <h3><i class="fa-solid fa-inbox"></i> Email</h3>
+                <i class="fa-solid fa-inbox"></i>
+                <h3>Email</h3>
                 <p><a href="mailto:rishabh@rishabhgarg.dev">rishabh@rishabhgarg.dev</a></p>
             </div>
             <div class="contact-item">
-                <h3><i class="fa-brands fa-github"></i> GitHub</h3>
-                <p><a href="https://github.com/CrazeXD">github.com/CrazeXD</a></p>
+                <i class="fa-brands fa-github"></i>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/CrazeXD" target="_blank">github.com/CrazeXD</a></p>
             </div>
             <div class="contact-item">
-                <h3><i class="fa-brands fa-linkedin"></i> LinkedIn</h3>
+                <i class="fa-brands fa-linkedin"></i>
+                <h3>LinkedIn</h3>
                 <p><a href="https://www.linkedin.com/in/rishabh-garg-105b67238/"
                         target="_blank">www.linkedin.com/in/rishabh-garg-105b67238/</a></p>
             </div>
@@ -294,6 +486,21 @@
             delay: 0.8
         });
 
+        // Project cards animation
+        gsap.utils.toArray('.project-card').forEach((card, i) => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: i * 0.2,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top bottom-=100',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
         // Accomplishments animations
         gsap.utils.toArray('.accomplishment-item').forEach((item, i) => {
             gsap.to(item, {
@@ -305,6 +512,51 @@
                     trigger: item,
                     start: 'top bottom-=100',
                     toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Contact items animation
+        gsap.utils.toArray('.contact-item').forEach((item, i) => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: i * 0.2,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top bottom-=100',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+
+        // Hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, .project-card, .accomplishment-item, .contact-item');
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.transform = 'scale(1.5)';
+                cursorOutline.style.borderColor = 'var(--accent-color)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.transform = 'scale(1)';
+                cursorOutline.style.borderColor = 'var(--accent-color)';
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
