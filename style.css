@@ -1,0 +1,414 @@
+/* START OF FILE style.css */
+
+:root {
+    /* New Color Palette - Dark Mode Focused on Readability */
+    --bg-color: #111827; /* Dark Gray-Blue (Tailwind gray-900) */
+    --card-bg: #1F2937; /* Slightly Lighter Gray-Blue (Tailwind gray-800) */
+    --card-hover: #374151; /* Medium Gray-Blue (Tailwind gray-700) */
+    --nav-bg: rgba(17, 24, 39, 0.85); /* Semi-transparent Dark BG */
+    --border-color: #374151; /* Subtle borders (matches card hover) */
+
+    --text-color: #f9f9fa; /* Light Gray (Tailwind gray-100) - Good contrast */
+    --text-muted: #bec4d0; /* Medium Gray (Tailwind gray-400) - Clearer than before */
+
+    --accent-color-1: #2DD4BF; /* Teal/Cyan (Tailwind teal-400) */
+    --accent-color-2: #A78BFA; /* Violet (Tailwind violet-400) */
+    --gradient-text: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+    --gradient-bg: linear-gradient(135deg, rgba(45, 212, 191, 0.1), rgba(17, 24, 39, 0)); /* Subtle gradient for hero */
+    --accent-solid: var(--accent-color-1); /* Use Teal as the main solid accent */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Apply smooth scroll globally */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    font-weight: 400; /* Default weight */
+}
+
+/* --- Header & Navigation --- */
+header {
+    background: var(--nav-bg);
+    padding: 1rem 0; /* Reduced vertical padding slightly */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Use color: transparent for better compatibility */
+    transition: opacity 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem; /* Slightly more space */
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted); /* Use muted color for non-active links */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-solid); /* Use solid accent for hover */
+}
+
+/* --- Hero Section --- */
+.hero {
+    min-height: 100vh;
+    display: flex; /* Keep flex for vertical centering */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    /* Apply subtle gradient background to the full section */
+    background: var(--gradient-bg);
+    width: 100%; /* Ensure it takes full width */
+    padding: 8rem 2rem 4rem 2rem; /* Adjust padding (more top for fixed header) */
+    text-align: center;
+}
+
+/* Removed max-width from .hero itself */
+/* .hero-content remains for semantic structure */
+.hero-content {
+    max-width: 750px; /* Limit text width for readability */
+    margin: 0 auto; /* Center the text content block */
+}
+
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 3.8rem); /* Responsive font size */
+    margin-bottom: 1.5rem;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Responsive font size */
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto; /* Center paragraph within its container */
+}
+
+/* --- General Section Styling --- */
+section {
+    padding: 6rem 2rem; /* Standard padding */
+}
+
+/* Container to center content within sections (excluding hero) */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 5vw, 2.2rem); /* Responsive font size */
+    font-weight: 600;
+    margin-bottom: 3.5rem;
+    text-align: center;
+    color: var(--text-color);
+    position: relative;
+    display: inline-block; /* Allows centering via text-align on parent */
+    left: 50%; /* Necessary for transform centering */
+    transform: translateX(-50%); /* Center the inline-block title */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; /* Position underline below */
+    left: 0;
+    width: 70%;
+    height: 4px;
+    background: var(--gradient-text); /* Use gradient for underline */
+    border-radius: 4px;
+}
+
+/* Apply centering container to specific sections */
+#about .section-container,
+#projects .section-container,
+#accomplishments .section-container,
+#contact .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- About Section --- */
+#about { background-color: var(--bg-color); } /* Ensure consistent bg if needed */
+
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem; /* Space before tags */
+}
+
+.about-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    max-width: 400px; /* Limit image size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 16px; /* Slightly softer corners */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+/* --- Skill Tags --- */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem; /* Slightly more gap */
+    margin-top: 1.5rem;
+}
+
+.skill-tag {
+    background: rgba(45, 212, 191, 0.1); /* Use accent color with alpha */
+    color: var(--accent-solid); /* Use solid accent color */
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(45, 212, 191, 0.2); /* Subtle border matching background */
+}
+
+/* --- Projects Section --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex; /* Use flexbox for better structure */
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    background: var(--card-hover);
+}
+
+.project-card h3 {
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    flex-grow: 1; /* Allow text to take available space */
+    margin-bottom: 1.5rem; /* Space before tags */
+}
+
+/* Ensure tags stay at the bottom */
+.project-card .skill-tags {
+    margin-top: auto;
+}
+
+
+/* --- Accomplishments Section --- */
+.accomplishments-list {
+    display: grid; /* Use grid for consistent spacing */
+    gap: 1.5rem;
+}
+
+.accomplishment-item {
+    background: var(--card-bg);
+    padding: 1.8rem; /* Slightly adjusted padding */
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.accomplishment-item:hover {
+    transform: translateX(6px);
+    background: var(--card-hover);
+}
+
+.accomplishment-item h3 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem; /* Less space below title */
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.accomplishment-item p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- Contact Section --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.contact-item {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem; /* More vertical padding */
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-6px);
+    background: var(--card-hover);
+}
+
+.contact-item i {
+    font-size: 2.2rem;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.2rem;
+    display: inline-block; /* Needed for gradient */
+}
+
+.contact-item h3 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.contact-item p {
+    font-size: 1rem;
+}
+
+.contact-item a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    word-break: break-word; /* Prevent long links from overflowing */
+}
+
+.contact-item a:hover {
+    color: var(--accent-solid);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--card-bg); /* Match card background */
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-top: 5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    /* Hide desktop nav links */
+    .nav-links {
+        display: none;
+        /* Consider adding a burger menu toggle here in a real project */
+    }
+
+    nav {
+        padding: 0 1.5rem; /* Adjust nav padding */
+    }
+
+    header {
+        padding: 0.8rem 0;
+    }
+
+    section {
+        padding: 4rem 1.5rem; /* Reduce section padding */
+    }
+
+    .hero {
+        padding-top: 6rem; /* More top padding needed due to smaller header */
+        min-height: 80vh; /* Slightly reduce min-height */
+    }
+
+    .section-title {
+        margin-bottom: 2.5rem;
+    }
+
+    /* Stack About section content */
+    .about-container {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 2.5rem;
+    }
+
+    /* Ensure image appears correctly */
+    .about-image-wrapper {
+        order: -1; /* Optional: move image above text on mobile */
+    }
+
+    .project-card,
+    .accomplishment-item,
+    .contact-item {
+        padding: 1.5rem; /* Adjust card padding */
+    }
+}
+
+/* --- Accessibility Focus Styles --- */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-solid);
+    outline-offset: 3px;
+    border-radius: 4px; /* Add radius to outline */
+}
+
+
+/* END OF FILE style.css */
