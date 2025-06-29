@@ -4,238 +4,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Garg | Student Researcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Rishabh Garg | Physics & CS Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
+    <div id="particles-js"></div>
+
+    <header class="hidden">
         <nav>
-            <a href="#" class="logo">RG</a>
-            <ul class="nav-links">
+            <div class="logo">RG</div>
+            <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Research</a></li>
-                <li><a href="#accomplishments">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
+    <section id="hero" class="hidden">
+        <div class="hero-text">
             <h1>Rishabh Garg</h1>
-            <p>A passionate student researcher exploring the frontiers of physics and data science.</p>
+            <p>High School Student | Physics Enthusiast | Computer Scientist</p>
         </div>
     </section>
 
-    <section id="about">
-        <div class="about-container">
-            <div>
+    <main>
+        <section id="about" class="hidden">
             <h2 class="section-title">About Me</h2>
-            <p class="about-text">
-                Hi! I'm Rishabh, a high school student deeply fascinated by physics, particularly wave sciences and
-                quantum mechanics. My journey in science has been driven by an insatiable curiosity to understand
-                how the universe works at both macroscopic and microscopic scales.
-            </p>
-            <div class="skill-tags">
-                <span class="skill-tag">Physics</span>
-                <span class="skill-tag">Data Analysis</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Research</span>
-            </div>
-            </div>
-            <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="/static/Wind Power Solo.jpg" alt="About Me Image"
-                style="width: 60%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Research Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Beamline For Schools</h3>
-                <p>Research proposal exploring the impacts of symmetry in relativistic electron particle beam cross sections on beam quality for high-accuracy beam collimation.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Particle Physics</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">Geant4</span>
-                    <span class="skill-tag">Python</span>
+            <div class="about-container">
+                <div class="about-text">
+                    <p>I am a high school student with a deep passion for the interwoven fields of physics and computer
+                        science. I am fascinated by the fundamental laws that govern our universe, and I enjoy
+                        leveraging my programming skills to solve complex problems, model intricate systems, and analyze
+                        data. My goal is to pursue a career that allows me to combine these two fields to push the
+                        boundaries of scientific research and technological innovation.</p>
+                </div>
+                <div class="about-photo">
+                    <img src="static/Wind Power Solo.jpg" alt="A photo of Rishabh Garg">
                 </div>
             </div>
-            <div class="project-card">
-                <h3>Crowd Dynamics Lab</h3>
-                <p>Advanced network analysis of online platforms' terms of services, developing novel algorithms to
-                    enhance user transparency and understanding.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Network Analysis</span>
-                    <span class="skill-tag">Algorithms</span>
-                    <span class="skill-tag">Data Mining</span>
-                    <span class="skill-tag">Python</span>
+        </section>
+
+        <section id="projects" class="hidden">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-container">
+                <!-- Project cards now have a data-project attribute -->
+                <div class="project-card" data-project="bls">
+                    <h3>Beamline For Schools</h3>
+                    <p>A research proposal on relativistic electron particle beam cross sections.</p>
+                </div>
+                <div class="project-card" data-project="crowd">
+                    <h3>Crowd Dynamics Lab</h3>
+                    <p>Advanced network analysis of online platforms' terms of services.</p>
+                </div>
+                <div class="project-card" data-project="python">
+                    <h3>Python Projects</h3>
+                    <p>A collection of Python projects and exercises on GitHub.</p>
                 </div>
             </div>
-            <div class="project-card">
-                <h3>U.S. College Political Polarization Study</h3>
-                <p>Analysis of college political leanings and their impact on local voting patterns, utilizing
-                    Bipartisan Press API for semantic analysis.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Political Science</span>
-                    <span class="skill-tag">Statistical Analysis</span>
-                    <span class="skill-tag">NLP</span>
-                    <span class="skill-tag">Python</span>
+        </section>
+
+        <section id="skills" class="hidden">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Physics & Research</h3>
+                    <ul>
+                        <li>Data Analysis</li>
+                        <li>High Energy Particle Physics</li>
+                        <li>Network Analysis</li>
+                        <li>Scientific Computing</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>C++</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>Linux</li>
+                        <li>Numpy</li>
+                        <li>Matplotlib</li>
+                        <li>ROOT</li>
+                        <li>Geant4</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="hidden">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+            <a href="mailto:rishabh@rishabhgarg.dev" class="contact-button">Email Me</a>
+            <div class="social-links">
+                <a href="https://github.com/CrazeXD" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <!-- Project image will be inserted here by JS -->
+                </div>
+                <div class="modal-text-container">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-description"></p>
+                    <a id="modal-link" href="#" target="_blank" class="project-link">View Details</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="accomplishments">
-        <h2 class="section-title">Achievements</h2>
-        <div class="accomplishments-list">
-            <div class="accomplishment-item">
-                <h3>2nd Place Science Olympiad States</h3>
-                <p>Awarded 2nd place at the Southern California State tournament in the Wind Power event.</p>
-            </div>
-            <div class="accomplishment-item">
-                <h3>Presidential Gold Medal for Volunteering</h3>
-                <p>Awarded three times for completing over 400 hours of community service, demonstrating leadership and
-                    commitment to social causes.</p>
-            </div>
-            <div class="accomplishment-item">
-                <h3>National Cyber League Spring 2024</h3>
-                <p>Ranked in Top 500 among 7400 participants in the college standard bracket, showcasing advanced
-                    cybersecurity skills.</p>
-            </div>
-            <div class="accomplishment-item">
-                <h3>IEEE MIT Research Conference</h3>
-                <p>Presented research poster at the MIT Undergraduate Research Technology Conference, sponsored by IEEE.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Let's Connect</h2>
-        <div class="contact-container">
-            <div class="contact-item">
-                <i class="fa-solid fa-inbox"></i>
-                <h3>Email</h3>
-                <p><a href="mailto:rishabh@rishabhgarg.dev">rishabh@rishabhgarg.dev</a></p>
-            </div>
-            <div class="contact-item">
-                <i class="fa-brands fa-github"></i>
-                <h3>GitHub</h3>
-                <p><a href="https://github.com/CrazeXD" target="_blank">github.com/CrazeXD</a></p>
-            </div>
-            <div class="contact-item">
-                <i class="fa-brands fa-linkedin"></i>
-                <h3>LinkedIn</h3>
-                <p><a href="https://www.linkedin.com/in/rishabh-garg-105b67238/" target="_blank">LinkedIn Profile</a>
-                </p>
-            </div>
-        </div>
-    </section>
 
     <footer>
-        <p>&copy; 2025 Rishabh Garg. All rights reserved.</p>
+        <p>© 2025 Rishabh Garg | Designed with a passion for discovery.</p>
     </footer>
 
-    <script>
-        // Wait for everything to load
-        window.addEventListener('load', () => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Set default easing
-            gsap.defaults({
-                ease: "power2.out"
-            });
-
-            // Hero animation - runs once on page load
-            gsap.from('.hero h1', {
-                y: 20,
-                opacity: 0,
-                duration: 1
-            });
-
-            gsap.from('.hero p', {
-                y: 20,
-                opacity: 0,
-                duration: 1,
-                delay: 0.3
-            });
-
-            // Function to create reveal animation
-            function createRevealAnimation(elements, options = {}) {
-                const elements_array = gsap.utils.toArray(elements);
-
-                elements_array.forEach((element) => {
-                    gsap.set(element, { opacity: 0, y: 20 });
-
-                    ScrollTrigger.create({
-                        trigger: element,
-                        start: "top 80%",
-                        onEnter: () => {
-                            gsap.to(element, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 0.8,
-                                ...options
-                            });
-                        },
-                        once: true // Animation plays only once
-                    });
-                });
-            }
-
-            // Apply animations to different sections
-            createRevealAnimation('.about-container > div');
-            createRevealAnimation('.project-card');
-            createRevealAnimation('.accomplishment-item');
-            createRevealAnimation('.contact-item');
-
-            // Skill tags animation
-            const skillTags = gsap.utils.toArray('.skill-tag');
-            skillTags.forEach((tag) => {
-                gsap.set(tag, { opacity: 0, scale: 0.8 });
-
-                ScrollTrigger.create({
-                    trigger: tag,
-                    start: "top 90%",
-                    onEnter: () => {
-                        gsap.to(tag, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.4,
-                            ease: "back.out(1.7)"
-                        });
-                    },
-                    once: true
-                });
-            });
-
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerOffset = 80;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
