@@ -26,32 +26,33 @@
 
     <section id="hero" class="hidden">
         <div class="hero-text">
-            <h1>Rishabh Garg</h1>
-            <p>High School Student | Physics Enthusiast | Computer Scientist</p>
+            <!-- UPDATED: data-value attribute removed -->
+            <h1 class="animate-letters">Rishabh Garg</h1>
+            <p class="stagger-child">High School Student | Physics Enthusiast | Computer Scientist</p>
         </div>
     </section>
 
     <main>
+        <!-- (The rest of the main content is unchanged) -->
         <section id="about" class="hidden">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title stagger-child">About Me</h2>
             <div class="about-container">
-                <div class="about-text">
+                <div class="about-text stagger-child">
                     <p>I am a high school student with a deep passion for the interwoven fields of physics and computer
                         science. I am fascinated by the fundamental laws that govern our universe, and I enjoy
                         leveraging my programming skills to solve complex problems, model intricate systems, and analyze
                         data. My goal is to pursue a career that allows me to combine these two fields to push the
                         boundaries of scientific research and technological innovation.</p>
                 </div>
-                <div class="about-photo">
+                <div class="about-photo stagger-child">
                     <img src="static/Wind Power Solo.jpg" alt="A photo of Rishabh Garg">
                 </div>
             </div>
         </section>
 
         <section id="projects" class="hidden">
-            <h2 class="section-title">Projects</h2>
-            <div class="project-container">
-                <!-- Project cards now have a data-project attribute -->
+            <h2 class="section-title stagger-child">Projects</h2>
+            <div class="project-container stagger-child">
                 <div class="project-card" data-project="bls">
                     <h3>Beamline For Schools</h3>
                     <p>A research proposal on relativistic electron particle beam cross sections.</p>
@@ -68,8 +69,8 @@
         </section>
 
         <section id="skills" class="hidden">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-container">
+            <h2 class="section-title stagger-child">Skills</h2>
+            <div class="skills-container stagger-child">
                 <div class="skill-category">
                     <h3>Physics & Research</h3>
                     <ul>
@@ -101,24 +102,22 @@
         </section>
 
         <section id="contact" class="hidden">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-            <a href="mailto:rishabh@rishabhgarg.dev" class="contact-button">Email Me</a>
-            <div class="social-links">
+            <h2 class="section-title stagger-child">Get In Touch</h2>
+            <p class="stagger-child">I'm always open to new opportunities and collaborations. Feel free to reach out!
+            </p>
+            <a href="mailto:rishabh@rishabhgarg.dev" class="contact-button stagger-child">Email Me</a>
+            <div class="social-links stagger-child">
                 <a href="https://github.com/CrazeXD" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">LinkedIn</a>
             </div>
         </section>
     </main>
 
-    <!-- Modal Structure -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">×</span>
             <div class="modal-body">
-                <div class="modal-image-container">
-                    <!-- Project image will be inserted here by JS -->
-                </div>
+                <div class="modal-image-container"></div>
                 <div class="modal-text-container">
                     <h3 id="modal-title"></h3>
                     <p id="modal-description"></p>
@@ -128,9 +127,25 @@
         </div>
     </div>
 
+    <!-- NEW: Screen Pet Element -->
+    <div id="screen-pet">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <!-- Antenna -->
+            <line x1="50" y1="15" x2="50" y2="5" stroke="var(--slate-light)" stroke-width="3" />
+            <circle cx="50" cy="5" r="5" fill="var(--accent-color)" />
+            <!-- Head/Body -->
+            <rect x="30" y="15" width="40" height="40" rx="8" fill="var(--navy-lightest)" />
+            <!-- Eyes -->
+            <circle cx="45" cy="35" r="5" fill="var(--accent-color)" class="eye-glow" />
+            <circle cx="65" cy="35" r="5" fill="var(--accent-color)" class="eye-glow" />
+            <!-- Legs -->
+            <rect x="35" y="55" width="8" height="20" rx="4" fill="var(--navy-lightest)" class="leg left" />
+            <rect x="57" y="55" width="8" height="20" rx="4" fill="var(--navy-lightest)" class="leg right" />
+        </svg>
+    </div>
 
     <footer>
-        <p>© 2025 Rishabh Garg | Designed with a passion for discovery.</p>
+        <p>© 2024 Rishabh Garg | Designed with a passion for discovery.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>

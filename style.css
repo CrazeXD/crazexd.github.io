@@ -31,13 +31,25 @@ body {
 /* Animations */
 .hidden {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(30px);
+  filter: blur(5px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.stagger-child {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(5px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .visible {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
 header {
@@ -48,7 +60,10 @@ header {
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  transition: top 0.3s;
+  transition: top 0.4s ease-in-out;
+}
+header.scrolled-down {
+  top: -100px;
 }
 
 nav {
@@ -64,6 +79,10 @@ nav .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: var(--accent-color);
+  transition: transform 0.3s ease;
+}
+nav .logo:hover {
+  transform: rotate(-10deg) scale(1.1);
 }
 
 nav ul {
@@ -76,9 +95,24 @@ nav a {
   text-decoration: none;
   font-size: 1.1rem;
   transition: color 0.3s;
+  position: relative;
+  padding: 5px 0;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
 }
 nav a:hover {
   color: var(--accent-color);
+}
+nav a:hover::after {
+  width: 100%;
 }
 
 #hero {
@@ -95,6 +129,20 @@ nav a:hover {
   color: var(--slate-lightest);
   font-weight: 700;
 }
+/* Hero text letter-by-letter animation */
+.animate-letters span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  animation: letter-fade-in 0.5s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes letter-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .hero-text p {
   font-size: 1.5rem;
   font-weight: 300;
@@ -123,6 +171,10 @@ section {
   height: 4px;
   background: var(--accent-color);
   margin: 10px auto 0;
+  transition: width 0.4s ease;
+}
+section:hover .section-title::after {
+  width: 120px;
 }
 
 .about-container {
@@ -144,6 +196,10 @@ section {
   border-radius: 10px;
   z-index: 1;
   position: relative;
+  transition: transform 0.4s ease;
+}
+.about-photo:hover img {
+  transform: scale(1.05);
 }
 
 .project-container {
@@ -157,10 +213,12 @@ section {
   border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  border: 1px solid var(--navy-lightest);
 }
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
+  border-color: var(--accent-color);
 }
 .project-card h3 {
   margin-top: 0;
@@ -188,6 +246,12 @@ section {
   margin: 0.5rem;
   border-radius: 5px;
   display: inline-block;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.skill-category li:hover {
+  transform: scale(1.1);
+  background-color: var(--navy-lightest);
+  color: var(--accent-color);
 }
 
 #contact {
@@ -205,10 +269,11 @@ section {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 .contact-button:hover {
   background-color: rgba(100, 255, 218, 0.1);
+  transform: translateY(-5px);
 }
 .social-links {
   margin-top: 2rem;
@@ -218,13 +283,15 @@ section {
   color: var(--slate-light);
   text-decoration: none;
   font-size: 1.2rem;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s;
+  display: inline-block;
 }
 .social-links a:hover {
   color: var(--accent-color);
+  transform: translateY(-5px);
 }
 
-/* --- MODAL STYLES (WITH ANIMATION) --- */
+/* MODAL STYLES */
 .modal {
   position: fixed;
   z-index: 2000;
@@ -233,11 +300,9 @@ section {
   width: 100%;
   height: 100%;
   background-color: rgba(10, 25, 47, 0.85);
-  display: flex; /* Changed from none to flex for animation control */
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Animation Properties */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -255,16 +320,14 @@ section {
   max-width: 800px;
   width: 90%;
   position: relative;
-
-  /* Animation Properties */
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s; /* Added delay for a staggered effect */
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
 }
 
 .modal.active .modal-content {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .close-button {
@@ -275,11 +338,12 @@ section {
   font-size: 35px;
   font-weight: bold;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .close-button:hover {
   color: var(--accent-color);
+  transform: rotate(90deg);
 }
 
 .modal-body {
@@ -311,6 +375,9 @@ section {
 }
 
 @media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 3rem;
+  }
   .about-container {
     grid-template-columns: 1fr;
     text-align: center;
@@ -330,4 +397,69 @@ footer {
   padding: 2rem 0;
   font-size: 0.9rem;
   color: rgba(168, 178, 209, 0.5);
+}
+
+/* --- NEW: SCREEN PET STYLES --- */
+#screen-pet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 60px; /* Adjust size of the pet */
+  height: 60px;
+  z-index: 1500; /* Below modal, above most other content */
+  pointer-events: none; /* Allows clicking through the pet */
+  animation: walk-across 30s linear infinite;
+  animation-delay: 2s; /* Start after a small delay */
+}
+
+@keyframes walk-across {
+  from {
+    transform: translateX(-100%); /* Start off-screen left */
+  }
+  to {
+    transform: translateX(100vw); /* End off-screen right */
+  }
+}
+
+#screen-pet svg .leg {
+  transform-origin: top center;
+  animation: leg-walk 0.8s infinite;
+}
+#screen-pet svg .leg.right {
+  animation-delay: -0.4s; /* Offset the other leg's animation */
+}
+@keyframes leg-walk {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(25deg);
+  }
+  75% {
+    transform: rotate(-25deg);
+  }
+}
+
+#screen-pet svg .eye-glow {
+  animation: eye-blink 5s infinite;
+}
+@keyframes eye-blink {
+  0%,
+  95%,
+  100% {
+    transform: scaleY(1);
+  }
+  97.5% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* On smaller screens, make the pet smaller and faster */
+@media (max-width: 768px) {
+  #screen-pet {
+    width: 45px;
+    height: 45px;
+    animation-duration: 20s;
+  }
 }

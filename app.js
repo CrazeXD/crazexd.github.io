@@ -1,23 +1,40 @@
+// --- HEADER HIDE/SHOW ON SCROLL ---
+let lastScrollY = window.scrollY;
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+  if (lastScrollY < window.scrollY && window.scrollY > 100) {
+    header.classList.add("scrolled-down");
+  } else {
+    header.classList.remove("scrolled-down");
+  }
+  lastScrollY = window.scrollY;
+});
+
 // --- PARTICLES.JS CONFIGURATION ---
 particlesJS("particles-js", {
   particles: {
-    number: { value: 60, density: { enable: true, value_area: 800 } },
+    number: { value: 80, density: { enable: true, value_area: 800 } },
     color: { value: "#ffffff" },
-    shape: { type: "circle" },
-    opacity: { value: 0.5, random: true },
+    shape: { type: ["circle", "triangle"] },
+    opacity: {
+      value: 0.5,
+      random: true,
+      anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false },
+    },
     size: { value: 3, random: true },
     line_linked: {
       enable: true,
-      distance: 150,
+      distance: 120,
       color: "#ffffff",
-      opacity: 0.4,
+      opacity: 0.3,
       width: 1,
     },
     move: {
       enable: true,
-      speed: 2, // SLOWED DOWN from 6 to 2
+      speed: 1,
       direction: "none",
-      random: false,
+      random: true,
       straight: false,
       out_mode: "out",
       bounce: false,
@@ -26,11 +43,12 @@ particlesJS("particles-js", {
   interactivity: {
     detect_on: "canvas",
     events: {
-      onhover: { enable: true, mode: "repulse" },
+      onhover: { enable: true, mode: "grab" },
       onclick: { enable: true, mode: "push" },
       resize: true,
     },
     modes: {
+      grab: { distance: 140, line_opacity: 0.7 },
       repulse: { distance: 150, duration: 0.4 },
       push: { particles_nb: 4 },
     },
@@ -38,34 +56,57 @@ particlesJS("particles-js", {
   retina_detect: true,
 });
 
-// --- SCROLL ANIMATIONS ---
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    }
+// --- HERO TEXT INITIAL ANIMATION ---
+const h1 = document.querySelector(".animate-letters");
+if (h1) {
+  const text = h1.textContent;
+  h1.innerHTML = "";
+  text.split("").forEach((char, index) => {
+    const span = document.createElement("span");
+    span.textContent = char === " " ? "\u00A0" : char;
+    span.style.animationDelay = `${index * 0.05}s`;
+    h1.appendChild(span);
   });
-});
+}
+
+// --- TEXT SCRAMBLE ON HOVER LOGIC HAS BEEN REMOVED ---
+
+// --- SCROLL ANIMATIONS ---
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        const staggerChildren = entry.target.querySelectorAll(".stagger-child");
+        staggerChildren.forEach((child, index) => {
+          setTimeout(() => {
+            child.classList.add("visible");
+          }, (index + 1) * 150);
+        });
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
 
 const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((el) => observer.observe(el));
 
-// --- PROJECT MODAL LOGIC ---
+// --- PROJECT MODAL LOGIC (No changes) ---
 const projectData = {
   bls: {
     title: "Beamline For Schools Proposal",
     description:
       "A comprehensive research proposal submitted to the CERN Beamline for Schools competition. The project explores the impacts of symmetry in relativistic electron particle beam cross sections on beam quality, aiming to improve high-accuracy beam collimation techniques. This involves experimental physics, data modeling, and simulation.",
-    // Add a real image path here
     image: "static/setup2.png",
-    link: "#", // Link to the actual proposal PDF or page
+    link: "#",
   },
   crowd: {
     title: "Crowd Dynamics Lab Research",
     description:
       "As part of the Crowd Dynamics Lab, I conducted advanced network analysis on the terms of service of major online platforms. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and understanding of their rights and obligations.",
     image: "static/Reddit.png",
-    link: "#", // Link to the research paper or project page
+    link: "#",
   },
   python: {
     title: "Python Projects Collection",
