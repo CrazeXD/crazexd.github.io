@@ -19,6 +19,8 @@ body {
   padding: 0;
   background-color: var(--bg-color);
   color: var(--slate-light);
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  background-attachment: fixed;
 }
 
 #particles-js {
@@ -52,18 +54,29 @@ body {
   filter: blur(0);
 }
 
+/* --- UPDATED: Simplified Glass Pane Style --- */
+.glass-pane {
+  background-color: rgba(17, 34, 64, 0.6); /* Slightly more subtle opacity */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(168, 178, 209, 0.1);
+  border-radius: 15px;
+  /* REMOVED the mask-image properties for a uniform look */
+}
+
 header {
-  background-color: rgba(10, 25, 47, 0.85);
+  background-color: rgba(10, 25, 47, 0.75);
   padding: 1rem 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  transition: top 0.4s ease-in-out;
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 header.scrolled-down {
-  top: -100px;
+  transform: translateY(-100%);
 }
 
 nav {
@@ -122,14 +135,21 @@ nav a:hover::after {
   align-items: center;
   text-align: left;
   padding: 0 2rem;
+  position: relative;
+  z-index: 1;
 }
+
+.hero-text {
+  text-align: center;
+  padding: 2.5rem 3.5rem;
+}
+
 .hero-text h1 {
   font-size: 4.5rem;
   margin-bottom: 1rem;
   color: var(--slate-lightest);
   font-weight: 700;
 }
-/* Hero text letter-by-letter animation */
 .animate-letters span {
   display: inline-block;
   opacity: 0;
@@ -152,11 +172,18 @@ nav a:hover::after {
 main {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 8rem 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
+
 section {
-  padding: 6rem 0;
+  padding: 4rem 2rem;
 }
+
 .section-title {
   text-align: center;
   font-size: 2.8rem;
@@ -211,7 +238,7 @@ section:hover .section-title::after {
   background-color: var(--navy-light);
   padding: 2rem;
   border-radius: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   cursor: pointer;
   border: 1px solid var(--navy-lightest);
 }
@@ -220,6 +247,25 @@ section:hover .section-title::after {
   box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
   border-color: var(--accent-color);
 }
+.project-card.hit {
+  animation: project-hit 0.4s ease-out;
+}
+@keyframes project-hit {
+  0% {
+    box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
+    border-color: var(--accent-color);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 45px rgba(100, 255, 218, 0.5);
+    border-color: var(--white);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
+    border-color: var(--accent-color);
+  }
+}
+
 .project-card h3 {
   margin-top: 0;
   color: var(--slate-lightest);
@@ -375,8 +421,18 @@ section:hover .section-title::after {
 }
 
 @media (max-width: 768px) {
+  main {
+    padding: 6rem 1rem;
+    gap: 2rem;
+  }
+  section {
+    padding: 3rem 1.5rem;
+  }
   .hero-text h1 {
     font-size: 3rem;
+  }
+  .hero-text {
+    padding: 2rem;
   }
   .about-container {
     grid-template-columns: 1fr;
@@ -393,31 +449,35 @@ section:hover .section-title::after {
 }
 
 footer {
+  max-width: 1000px;
+  margin: 0 auto 2rem auto;
+  padding: 2rem;
   text-align: center;
-  padding: 2rem 0;
   font-size: 0.9rem;
-  color: rgba(168, 178, 209, 0.5);
+  color: rgba(168, 178, 209, 0.7);
+  position: relative;
+  z-index: 1;
 }
 
-/* --- NEW: SCREEN PET STYLES --- */
+/* --- SCREEN PET STYLES --- */
 #screen-pet {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 60px; /* Adjust size of the pet */
+  width: 60px;
   height: 60px;
-  z-index: 1500; /* Below modal, above most other content */
-  pointer-events: none; /* Allows clicking through the pet */
+  z-index: 1500;
+  pointer-events: none;
   animation: walk-across 30s linear infinite;
-  animation-delay: 2s; /* Start after a small delay */
+  animation-delay: 2s;
 }
 
 @keyframes walk-across {
   from {
-    transform: translateX(-100%); /* Start off-screen left */
+    transform: translateX(-100%);
   }
   to {
-    transform: translateX(100vw); /* End off-screen right */
+    transform: translateX(100vw);
   }
 }
 
@@ -426,7 +486,7 @@ footer {
   animation: leg-walk 0.8s infinite;
 }
 #screen-pet svg .leg.right {
-  animation-delay: -0.4s; /* Offset the other leg's animation */
+  animation-delay: -0.4s;
 }
 @keyframes leg-walk {
   0%,
@@ -455,11 +515,27 @@ footer {
   }
 }
 
-/* On smaller screens, make the pet smaller and faster */
 @media (max-width: 768px) {
   #screen-pet {
     width: 45px;
     height: 45px;
     animation-duration: 20s;
   }
+}
+
+/* --- COSMIC RAY STYLES --- */
+.cosmic-ray {
+  position: fixed;
+  width: 2px; /* Set back to a normal width */
+  height: 150px;
+  background: linear-gradient(
+    to bottom,
+    rgba(100, 255, 218, 0),
+    rgba(100, 255, 218, 0.8),
+    rgba(100, 255, 218, 0)
+  );
+  opacity: 0.8;
+  z-index: 1600;
+  pointer-events: none;
+  /* The transition property is no longer needed as JS handles the animation */
 }

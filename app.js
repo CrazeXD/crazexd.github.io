@@ -1,14 +1,20 @@
 // --- HEADER HIDE/SHOW ON SCROLL ---
 let lastScrollY = window.scrollY;
 const header = document.querySelector("header");
+const body = document.body;
 
 window.addEventListener("scroll", () => {
-  if (lastScrollY < window.scrollY && window.scrollY > 100) {
+  if (lastScrollY < window.scrollY && window.scrollY > header.clientHeight) {
     header.classList.add("scrolled-down");
   } else {
     header.classList.remove("scrolled-down");
   }
   lastScrollY = window.scrollY;
+
+  const scrollRatio =
+    window.scrollY /
+    (document.documentElement.scrollHeight - window.innerHeight);
+  body.style.backgroundPosition = `0 ${scrollRatio * 150}px`;
 });
 
 // --- PARTICLES.JS CONFIGURATION ---
@@ -69,8 +75,6 @@ if (h1) {
   });
 }
 
-// --- TEXT SCRAMBLE ON HOVER LOGIC HAS BEEN REMOVED ---
-
 // --- SCROLL ANIMATIONS ---
 const observer = new IntersectionObserver(
   (entries) => {
@@ -83,6 +87,7 @@ const observer = new IntersectionObserver(
             child.classList.add("visible");
           }, (index + 1) * 150);
         });
+        observer.unobserve(entry.target);
       }
     });
   },
@@ -92,7 +97,7 @@ const observer = new IntersectionObserver(
 const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((el) => observer.observe(el));
 
-// --- PROJECT MODAL LOGIC (No changes) ---
+// --- PROJECT MODAL LOGIC ---
 const projectData = {
   bls: {
     title: "Beamline For Schools Proposal",
@@ -104,9 +109,16 @@ const projectData = {
   crowd: {
     title: "Crowd Dynamics Lab Research",
     description:
-      "As part of the Crowd Dynamics Lab, I conducted advanced network analysis on the terms of service of major online platforms. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and understanding of their rights and obligations.",
+      "As part of the Crowd Dynamics Lab, I conducted advanced network analysis on the terms of service of major online platforms. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and and understanding of their rights and obligations.",
     image: "static/Reddit.png",
     link: "#",
+  },
+  fluxed: {
+    title: "Fluxed: N-Dimensional Integral Library",
+    description:
+      "Fluxed is a Python library designed to compute definite integrals of distributions in complex N-dimensional shapes. It provides a user-friendly interface for advanced mathematical computations, making it easier for researchers and developers to perform high-dimensional integration tasks.",
+    image: "static/fluxed.png",
+    link: "https://pypi.org/project/fluxed/",
   },
   python: {
     title: "Python Projects Collection",
@@ -150,3 +162,64 @@ modal.addEventListener("click", (e) => {
     closeModal();
   }
 });
+
+// --- REWRITTEN & FIXED: COSMIC RAY EVENT LOGIC ---
+
+function checkCollision(elem1, elem2) {
+  const rect1 = elem1.getBoundingClientRect();
+  const rect2 = elem2.getBoundingClientRect();
+  return !(
+    rect1.right < rect2.left ||
+    rect1.left > rect2.right ||
+    rect1.bottom < rect2.top ||
+    rect1.top > rect2.bottom
+  );
+}
+
+// Rewritten to be more reliable
+function fireCosmicRay() {
+  const ray = document.createElement("div");
+  ray.className = "cosmic-ray";
+  document.body.appendChild(ray);
+
+  const startX = Math.random() * window.innerWidth;
+  const angle = 70 + Math.random() * 40;
+
+  // We track the position in JS variables, not by reading the complex CSS transform matrix.
+  let currentX = startX;
+  let currentY = -200; // Start above the screen
+  let hasHit = false;
+
+  ray.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${angle}deg)`;
+
+  function animate() {
+    // Increment position
+    currentY += 8; // Adjust for speed
+
+    // Apply the new, reliable position
+    ray.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${angle}deg)`;
+
+    // Check for collision with project cards only once
+    if (!hasHit) {
+      projectCards.forEach((card) => {
+        if (checkCollision(ray, card)) {
+          hasHit = true;
+          card.classList.add("hit");
+          setTimeout(() => card.classList.remove("hit"), 400);
+        }
+      });
+    }
+
+    // Remove the ray when it goes off-screen
+    if (currentY > window.innerHeight + 200) {
+      ray.remove();
+    } else {
+      requestAnimationFrame(animate);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// Fire a cosmic ray at random intervals
+setInterval(fireCosmicRay, 3000 + Math.random() * 4000); // Made slightly more frequent

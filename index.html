@@ -25,16 +25,15 @@
     </header>
 
     <section id="hero" class="hidden">
+        <!-- ADDED glass-pane class here -->
         <div class="hero-text">
-            <!-- UPDATED: data-value attribute removed -->
             <h1 class="animate-letters">Rishabh Garg</h1>
             <p class="stagger-child">High School Student | Physics Enthusiast | Computer Scientist</p>
         </div>
     </section>
 
     <main>
-        <!-- (The rest of the main content is unchanged) -->
-        <section id="about" class="hidden">
+        <section id="about" class="hidden glass-pane">
             <h2 class="section-title stagger-child">About Me</h2>
             <div class="about-container">
                 <div class="about-text stagger-child">
@@ -50,7 +49,7 @@
             </div>
         </section>
 
-        <section id="projects" class="hidden">
+        <section id="projects" class="hidden glass-pane">
             <h2 class="section-title stagger-child">Projects</h2>
             <div class="project-container stagger-child">
                 <div class="project-card" data-project="bls">
@@ -61,6 +60,10 @@
                     <h3>Crowd Dynamics Lab</h3>
                     <p>Advanced network analysis of online platforms' terms of services.</p>
                 </div>
+                <div class="project-card" data-project="fluxed">
+                    <h3>Fluxed</h3>
+                    <p>A Python library for computing definite integrals of distributions in complex N-dimensional shapes.</p>
+                </div>
                 <div class="project-card" data-project="python">
                     <h3>Python Projects</h3>
                     <p>A collection of Python projects and exercises on GitHub.</p>
@@ -68,7 +71,7 @@
             </div>
         </section>
 
-        <section id="skills" class="hidden">
+        <section id="skills" class="hidden glass-pane">
             <h2 class="section-title stagger-child">Skills</h2>
             <div class="skills-container stagger-child">
                 <div class="skill-category">
@@ -85,14 +88,17 @@
                     <ul>
                         <li>Python</li>
                         <li>C++</li>
+                        <li>LaTeX</li>
+                        <li>GoLang</li>
+                        <li>Java</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Tools & Technologies</h3>
                     <ul>
-                        <li>Git & GitHub</li>
+                        <li>Git</li>
                         <li>Linux</li>
-                        <li>Numpy</li>
+                        <li>Numpy / Scipy</li>
                         <li>Matplotlib</li>
                         <li>ROOT</li>
                         <li>Geant4</li>
@@ -101,7 +107,7 @@
             </div>
         </section>
 
-        <section id="contact" class="hidden">
+        <section id="contact" class="hidden glass-pane">
             <h2 class="section-title stagger-child">Get In Touch</h2>
             <p class="stagger-child">I'm always open to new opportunities and collaborations. Feel free to reach out!
             </p>
@@ -127,7 +133,6 @@
         </div>
     </div>
 
-    <!-- NEW: Screen Pet Element -->
     <div id="screen-pet">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <!-- Antenna -->
@@ -144,8 +149,9 @@
         </svg>
     </div>
 
-    <footer>
-        <p>© 2024 Rishabh Garg | Designed with a passion for discovery.</p>
+    <!-- ADDED glass-pane class here -->
+    <footer class="glass-pane">
+        <p>© 2025 Rishabh Garg | Designed with a passion for discovery.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
