@@ -102,9 +102,9 @@ const projectData = {
   bls: {
     title: "Beamline For Schools Proposal",
     description:
-      "A comprehensive research proposal submitted to the CERN Beamline for Schools competition. The project explores the impacts of symmetry in relativistic electron particle beam cross sections on beam quality, aiming to improve high-accuracy beam collimation techniques. This involves experimental physics, data modeling, and simulation.",
+      "Team captain for a comprehensive research proposal submitted to the international CERN Beamline for Schools competition that was shortlisted as a winning proposal under the team name Beam Bakers. The project explores the impacts of symmetry in relativistic electron particle beam cross sections on beam quality, aiming to improve high-accuracy beam collimation techniques. This involves experimental physics, data modeling, statistics, and simulation.",
     image: "static/setup2.png",
-    link: "#",
+    link: "https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf",
   },
   crowd: {
     title: "Crowd Dynamics Lab Research",
