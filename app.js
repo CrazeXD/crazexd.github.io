@@ -1,23 +1,169 @@
-// --- HEADER HIDE/SHOW ON SCROLL ---
-let lastScrollY = window.scrollY;
-const header = document.querySelector("header");
-const body = document.body;
+document.addEventListener('DOMContentLoaded', () => {
+  const terminalInput = document.getElementById('terminal-input');
+  const output = document.getElementById('output');
+  const terminalBody = document.getElementById('terminal-body');
 
-window.addEventListener("scroll", () => {
-  if (lastScrollY < window.scrollY && window.scrollY > header.clientHeight) {
-    header.classList.add("scrolled-down");
-  } else {
-    header.classList.remove("scrolled-down");
+  const commands = {
+    help: `Available commands:
+<br>  <span class="prompt">about</span>      - Who I am
+  <span class="prompt">projects</span>   - View my projects
+  <span class="prompt">skills</span>     - See my technical skills
+  <span class="prompt">contact</span>    - How to get in touch
+  <span class="prompt">clear</span>      - Clear the terminal screen
+  <span class="prompt">banner</span>     - Display the welcome banner`,
+
+    banner: `
+<span class="prompt">
+  RRRRR     GGGG 
+  R   R    G    
+  RRRRR    G  GG
+  R  R     G   G
+  R   R     GGGG 
+</span>
+<br>Welcome to my portfolio!
+Type '<span class="prompt">help</span>' to see the list of available commands.`,
+
+    about: `
+<div class="about-output">
+    <img src="static/DSC08945.JPG" alt="A photo of Rishabh Garg">
+    <div>
+        <p>I am a high school student with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging my programming skills to solve complex problems, model intricate systems, and analyze data.</p>
+        <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation.</p>
+    </div>
+</div>`,
+
+    skills: `
+<div class="category-title">Physics & Research</div>
+<div class="skill-list"><span>Data Analysis</span><span>High Energy Particle Physics</span><span>Network Analysis</span><span>Scientific Computing</span><span>Astrophysical Radiative Transfer Computation</span></div>
+<div class="category-title">Programming</div>
+<div class="skill-list"><span>Python</span><span>C++</span><span>LaTeX</span><span>GoLang</span><span>Java</span></div>
+<div class="category-title">Tools & Technologies</div>
+<div class="skill-list"><span>Git</span><span>Linux</span><span>Numpy / Scipy</span><span>Matplotlib</span><span>ROOT</span><span>Geant4</span></div>`,
+
+    projects: `
+Listing projects... Type '<span class="prompt">project [name]</span>' to see details.
+<br>
+  <span class="prompt">bls</span>       - Beamline For Schools Proposal
+  <span class="prompt">exomoon</span>   - Caltech Exomoon Research
+  <span class="prompt">crowd</span>     - Crowd Dynamics Lab Research
+  <span class="prompt">python</span>    - Python Projects Collection`,
+
+    contact: `
+You can reach out to me via:
+<br>
+  <span class="prompt">Email</span>      - <a href="mailto:rishabh@rishabhgarg.dev">rishabh@rishabhgarg.dev</a>
+  <span class="prompt">GitHub</span>     - <a href="https://github.com/CrazeXD" target="_blank">CrazeXD</a>
+  <span class="prompt">LinkedIn</span>   - <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">Rishabh Garg</a>`,
+    git: `https://github.com/CrazeXD/crazedx.github.io :)`,
+};
+
+  const projectData = {
+    bls: {
+      title: "Beamline For Schools Proposal",
+      description: "Team captain for a research proposal to the CERN Beamline for Schools competition, shortlisted as a winning proposal. The project explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques, involving experimental physics, data modeling, and simulation.",
+      image: "static/setup2.png",
+      link: "https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf",
+    },
+    crowd: {
+      title: "Crowd Dynamics Lab Research",
+      description: "Conducted advanced network analysis on the terms of service of major online platforms at the University of Illinois Urbana-Champaign. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and understanding of their rights.",
+      image: "static/Reddit.png",
+      link: "https://github.com/CrazeXD/ToS-Complexity",
+    },
+    exomoon: {
+      title: "Caltech Department of Geological and Planetary Sciences Research",
+      description: "Collaborated on research at Caltech with Dr. Apurva Oza to simulate the prescense of exomoons around gas giant exoplanets. Published research in the Monthly Notice of the Royal Astronomical Society on sodium signatures around WASP-39b, using Monte Carlo and forward-modelling methods to align with telescope spectral data.",
+      image: "static/combined_mcmc_prometheus_models-1.png",
+      link: "https://arxiv.org/abs/2509.08349",
+    },
+    python: {
+      title: "Python Projects Collection",
+      description: "A curated collection of my work in Python, from small scripts to complex applications. It showcases my proficiency in the language and my ability to tackle a variety of problems, including data structures, algorithms, and more.",
+      image: "",
+      link: "https://github.com/CrazeXD?tab=repositories",
+    },
+  };
+
+  terminalInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const command = terminalInput.value.trim().toLowerCase();
+      const [cmd, ...args] = command.split(' ');
+
+      printCommand(terminalInput.value);
+      terminalInput.value = '';
+
+      executeCommand(cmd, args);
+      scrollToBottom();
+    }
+  });
+
+  function executeCommand(cmd, args) {
+    if (cmd === 'clear') {
+      output.innerHTML = '';
+    } else if (commands[cmd]) {
+      printOutput(commands[cmd]);
+    } else if (cmd === 'project' && args.length > 0) {
+      const projectId = args[0];
+      if (projectData[projectId]) {
+        const data = projectData[projectId];
+        const imgHTML = data.image ? `<img src="${data.image}" alt="${data.title}">` : '';
+        const projectHTML = `
+        <div class="project-output">
+            <div class="project-header">
+          ${imgHTML}
+          <h3 class="project-title">${data.title}</h3>
+            </div>
+            <p class="project-description">${data.description}<br><a href="${data.link}" target="_blank">View Details -></a></p>
+        </div>`;
+        printOutput(projectHTML);
+      } else {
+        printOutput(`Error: Project '${projectId}' not found. Type '<span class="prompt">projects</span>' to see all projects.`);
+      }
+    } else if (cmd !== '') {
+      printOutput(`Command not found: ${cmd}. Type '<span class="prompt">help</span>' for a list of commands.`);
+    }
   }
-  lastScrollY = window.scrollY;
 
-  const scrollRatio =
-    window.scrollY /
-    (document.documentElement.scrollHeight - window.innerHeight);
-  body.style.backgroundPosition = `0 ${scrollRatio * 150}px`;
+  function printCommand(command) {
+    const line = document.createElement('div');
+    line.classList.add('input-line', 'command-history');
+    line.innerHTML = `<span class="prompt">guest@rishabhgarg.dev:~$</span><span class="command-text">${command}</span>`;
+    output.appendChild(line);
+  }
+
+  function printOutput(htmlContent) {
+    const line = document.createElement('div');
+    line.classList.add('output-line');
+    line.innerHTML = htmlContent;
+    output.appendChild(line);
+  }
+
+  function typeWriter(element, text, i = 0) {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      setTimeout(() => typeWriter(element, text, i + 1), 20);
+    }
+  }
+
+  function scrollToBottom() {
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+  }
+
+  // Initial load
+  function init() {
+    const bannerElement = document.createElement('div');
+    bannerElement.classList.add('output-line');
+    output.appendChild(bannerElement);
+    // Use a simple print for banner to avoid long typing animation on load
+    bannerElement.innerHTML = commands.banner;
+    scrollToBottom();
+  }
+
+  init();
 });
 
-// --- PARTICLES.JS CONFIGURATION ---
+
+// --- PARTICLES.JS CONFIGURATION (SAME AS BEFORE) ---
 particlesJS("particles-js", {
   particles: {
     number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -61,165 +207,3 @@ particlesJS("particles-js", {
   },
   retina_detect: true,
 });
-
-// --- HERO TEXT INITIAL ANIMATION ---
-const h1 = document.querySelector(".animate-letters");
-if (h1) {
-  const text = h1.textContent;
-  h1.innerHTML = "";
-  text.split("").forEach((char, index) => {
-    const span = document.createElement("span");
-    span.textContent = char === " " ? "\u00A0" : char;
-    span.style.animationDelay = `${index * 0.05}s`;
-    h1.appendChild(span);
-  });
-}
-
-// --- SCROLL ANIMATIONS ---
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        const staggerChildren = entry.target.querySelectorAll(".stagger-child");
-        staggerChildren.forEach((child, index) => {
-          setTimeout(() => {
-            child.classList.add("visible");
-          }, (index + 1) * 150);
-        });
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.1 }
-);
-
-const hiddenElements = document.querySelectorAll(".hidden");
-hiddenElements.forEach((el) => observer.observe(el));
-
-// --- PROJECT MODAL LOGIC ---
-const projectData = {
-  bls: {
-    title: "Beamline For Schools Proposal",
-    description:
-      "Team captain for a comprehensive research proposal submitted to the international CERN Beamline for Schools competition that was shortlisted as a winning proposal under the team name Beam Bakers. The project explores the impacts of symmetry in relativistic electron particle beam cross sections on beam quality, aiming to improve high-accuracy beam collimation techniques. This involves experimental physics, data modeling, statistics, and simulation.",
-    image: "static/setup2.png",
-    link: "https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf",
-  },
-  crowd: {
-    title: "Crowd Dynamics Lab Research",
-    description:
-      "As part of the Crowd Dynamics Lab, I conducted advanced network analysis on the terms of service of major online platforms. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and and understanding of their rights and obligations.",
-    image: "static/Reddit.png",
-    link: "#",
-  },
-  fluxed: {
-    title: "Fluxed: N-Dimensional Integral Library",
-    description:
-      "Fluxed is a Python library designed to compute definite integrals of distributions in complex N-dimensional shapes. It provides a user-friendly interface for advanced mathematical computations, making it easier for researchers and developers to perform high-dimensional integration tasks.",
-    image: "static/fluxed.png",
-    link: "https://pypi.org/project/fluxed/",
-  },
-  python: {
-    title: "Python Projects Collection",
-    description:
-      "This repository is a curated collection of my work in Python, ranging from small scripts and exercises to more complex applications. It showcases my proficiency in the language and my ability to tackle a variety of problems, including data structures, algorithms, and more.",
-    image: "static/logo.png",
-    link: "https://github.com/CrazeXD?tab=repositories",
-  },
-};
-
-const projectCards = document.querySelectorAll(".project-card");
-const modal = document.getElementById("project-modal");
-const closeModalButton = document.querySelector(".close-button");
-const modalTitle = document.getElementById("modal-title");
-const modalDescription = document.getElementById("modal-description");
-const modalImageContainer = document.querySelector(".modal-image-container");
-const modalLink = document.getElementById("modal-link");
-
-projectCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const projectId = card.dataset.project;
-    const data = projectData[projectId];
-
-    modalTitle.textContent = data.title;
-    modalDescription.textContent = data.description;
-    modalImageContainer.innerHTML = `<img src="${data.image}" alt="${data.title}">`;
-    modalLink.href = data.link;
-
-    modal.classList.add("active");
-  });
-});
-
-function closeModal() {
-  modal.classList.remove("active");
-}
-
-closeModalButton.addEventListener("click", closeModal);
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    closeModal();
-  }
-});
-
-// --- REWRITTEN & FIXED: COSMIC RAY EVENT LOGIC ---
-
-function checkCollision(elem1, elem2) {
-  const rect1 = elem1.getBoundingClientRect();
-  const rect2 = elem2.getBoundingClientRect();
-  return !(
-    rect1.right < rect2.left ||
-    rect1.left > rect2.right ||
-    rect1.bottom < rect2.top ||
-    rect1.top > rect2.bottom
-  );
-}
-
-// Rewritten to be more reliable
-function fireCosmicRay() {
-  const ray = document.createElement("div");
-  ray.className = "cosmic-ray";
-  document.body.appendChild(ray);
-
-  const startX = Math.random() * window.innerWidth;
-  const angle = 70 + Math.random() * 40;
-
-  // We track the position in JS variables, not by reading the complex CSS transform matrix.
-  let currentX = startX;
-  let currentY = -200; // Start above the screen
-  let hasHit = false;
-
-  ray.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${angle}deg)`;
-
-  function animate() {
-    // Increment position
-    currentY += 8; // Adjust for speed
-
-    // Apply the new, reliable position
-    ray.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${angle}deg)`;
-
-    // Check for collision with project cards only once
-    if (!hasHit) {
-      projectCards.forEach((card) => {
-        if (checkCollision(ray, card)) {
-          hasHit = true;
-          card.classList.add("hit");
-          setTimeout(() => card.classList.remove("hit"), 400);
-        }
-      });
-    }
-
-    // Remove the ray when it goes off-screen
-    if (currentY > window.innerHeight + 200) {
-      ray.remove();
-    } else {
-      requestAnimationFrame(animate);
-    }
-  }
-
-  requestAnimationFrame(animate);
-}
-
-// Fire a cosmic ray at random intervals
-setInterval(fireCosmicRay, 3000 + Math.random() * 4000); // Made slightly more frequent

@@ -4,156 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Garg | Physics & CS Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Rishabh Garg | Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="particles-js"></div>
-
-    <header class="hidden">
-        <nav>
-            <div class="logo">RG</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="hero" class="hidden">
-        <!-- ADDED glass-pane class here -->
-        <div class="hero-text">
-            <h1 class="animate-letters">Rishabh Garg</h1>
-            <p class="stagger-child">High School Student | Physics Enthusiast | Computer Scientist</p>
+    <div id="terminal-window">
+        <div id="terminal-header">
+            <div class="header-button red"></div>
+            <div class="header-button yellow"></div>
+            <div class="header-button green"></div>
+            <span class="header-title">rishabh@garg.dev — ~</span>
         </div>
-    </section>
-
-    <main>
-        <section id="about" class="hidden glass-pane">
-            <h2 class="section-title stagger-child">About Me</h2>
-            <div class="about-container">
-                <div class="about-text stagger-child">
-                    <p>I am a high school student with a deep passion for the interwoven fields of physics and computer
-                        science. I am fascinated by the fundamental laws that govern our universe, and I enjoy
-                        leveraging my programming skills to solve complex problems, model intricate systems, and analyze
-                        data. My goal is to pursue a career that allows me to combine these two fields to push the
-                        boundaries of scientific research and technological innovation.</p>
-                </div>
-                <div class="about-photo stagger-child">
-                    <img src="static/Wind Power Solo.jpg" alt="A photo of Rishabh Garg">
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="hidden glass-pane">
-            <h2 class="section-title stagger-child">Projects</h2>
-            <div class="project-container stagger-child">
-                <div class="project-card" data-project="bls">
-                    <h3>Beamline For Schools</h3>
-                    <p>A research proposal on relativistic electron particle beam cross sections.</p>
-                </div>
-                <div class="project-card" data-project="crowd">
-                    <h3>Crowd Dynamics Lab</h3>
-                    <p>Advanced network analysis of online platforms' terms of services.</p>
-                </div>
-                <div class="project-card" data-project="fluxed">
-                    <h3>Fluxed</h3>
-                    <p>A Python library for computing definite integrals of distributions in complex N-dimensional shapes.</p>
-                </div>
-                <div class="project-card" data-project="python">
-                    <h3>Python Projects</h3>
-                    <p>A collection of Python projects and exercises on GitHub.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="hidden glass-pane">
-            <h2 class="section-title stagger-child">Skills</h2>
-            <div class="skills-container stagger-child">
-                <div class="skill-category">
-                    <h3>Physics & Research</h3>
-                    <ul>
-                        <li>Data Analysis</li>
-                        <li>High Energy Particle Physics</li>
-                        <li>Network Analysis</li>
-                        <li>Scientific Computing</li>
-                        <li>Astrophysical Radiative Transfer Computation</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Programming</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>LaTeX</li>
-                        <li>GoLang</li>
-                        <li>Java</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Technologies</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>Linux</li>
-                        <li>Numpy / Scipy</li>
-                        <li>Matplotlib</li>
-                        <li>ROOT</li>
-                        <li>Geant4</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="hidden glass-pane">
-            <h2 class="section-title stagger-child">Get In Touch</h2>
-            <p class="stagger-child">I'm always open to new opportunities and collaborations. Feel free to reach out!
-            </p>
-            <a href="mailto:rishabh@rishabhgarg.dev" class="contact-button stagger-child">Email Me</a>
-            <div class="social-links stagger-child">
-                <a href="https://github.com/CrazeXD" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">LinkedIn</a>
-            </div>
-        </section>
-    </main>
-
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">×</span>
-            <div class="modal-body">
-                <div class="modal-image-container"></div>
-                <div class="modal-text-container">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-description"></p>
-                    <a id="modal-link" href="#" target="_blank" class="project-link">View Details</a>
-                </div>
+        <div id="terminal-body" onclick="document.getElementById('terminal-input').focus();">
+            <div id="output"></div>
+            <div id="input-line" class="input-line">
+                <span class="prompt">guest@rishabhgarg.dev:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off"
+                    spellcheck="false" autofocus>
             </div>
         </div>
     </div>
-
-    <div id="screen-pet">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <!-- Antenna -->
-            <line x1="50" y1="15" x2="50" y2="5" stroke="var(--slate-light)" stroke-width="3" />
-            <circle cx="50" cy="5" r="5" fill="var(--accent-color)" />
-            <!-- Head/Body -->
-            <rect x="30" y="15" width="40" height="40" rx="8" fill="var(--navy-lightest)" />
-            <!-- Eyes -->
-            <circle cx="45" cy="35" r="5" fill="var(--accent-color)" class="eye-glow" />
-            <circle cx="65" cy="35" r="5" fill="var(--accent-color)" class="eye-glow" />
-            <!-- Legs -->
-            <rect x="35" y="55" width="8" height="20" rx="4" fill="var(--navy-lightest)" class="leg left" />
-            <rect x="57" y="55" width="8" height="20" rx="4" fill="var(--navy-lightest)" class="leg right" />
-        </svg>
-    </div>
-
-    <!-- ADDED glass-pane class here -->
-    <footer class="glass-pane">
-        <p>© 2025 Rishabh Garg | Designed with a passion for discovery.</p>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="app.js"></script>
