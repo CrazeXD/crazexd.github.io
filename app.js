@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
   <span class="prompt">banner</span>     - Display the welcome banner`,
 
     banner: `
-<span class="prompt">
-  RRRRR     GGGG 
-  R   R    G    
-  RRRRR    G  GG
-  R  R     G   G
-  R   R     GGGG 
-</span>
+<pre class="prompt">
+  RRRRR     GGGG  RRRRR     GGGG  RRRRR     GGGG  RRRRR     GGGG 
+  R   R    G      R   R    G      R   R    G      R   R    G    
+  RRRRR    G  GG  RRRRR    G  GG  RRRRR    G  GG  RRRRR    G  GG
+  R  R     G   G  R  R     G   G  R  R     G   G  R  R     G   G
+  R   R     GGGG  R   R     GGGG  R   R     GGGG  R   R     GGGG
+</pre>
 <br>Welcome to my portfolio!
 Type '<span class="prompt">help</span>' to see the list of available commands.`,
 

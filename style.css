@@ -282,3 +282,10 @@ body {
     margin-bottom: 10px;
   }
 }
+
+/* in style.css */
+pre.prompt {
+    margin: 0;
+    font-family: var(--font-mono);
+    white-space: pre; /* This overrides 'nowrap' from the .prompt class */
+}
