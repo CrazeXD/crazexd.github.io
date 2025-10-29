@@ -7,13 +7,27 @@
     <title>Rishabh Garg | Terminal</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
 
 <body>
     <div id="particles-js"></div>
+
+    <!-- Popup Modal -->
+    <div id="popup-overlay">
+        <div id="popup-modal">
+            <h2>Leaving so soon?</h2>
+            <p>Are you sure you want to close this terminal? There's still so much to explore!</p>
+            <div class="popup-buttons">
+                <button class="popup-button" onclick="closePopup()">Stay</button>
+                <button class="popup-button" onclick="window.close()">Leave</button>
+            </div>
+        </div>
+    </div>
+
     <div id="terminal-window">
         <div id="terminal-header">
-            <div class="header-button red"></div>
+            <div class="header-button red" onclick="showPopup()">×</div>
             <div class="header-button yellow"></div>
             <div class="header-button green"></div>
             <span class="header-title">rishabh@garg.dev — ~</span>
@@ -27,9 +41,7 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="app.js"></script>
 </body>
 
 </html>

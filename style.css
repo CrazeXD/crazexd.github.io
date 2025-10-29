@@ -15,7 +15,6 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* Prevent scrolling of the body */
 }
 
 body {
@@ -65,10 +64,23 @@ body {
   height: 12px;
   border-radius: 50%;
   margin-right: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.header-button:hover {
+  transform: scale(1.1);
 }
 
 .header-button.red {
   background-color: #ff5f56;
+  color: #8b0000;
 }
 
 .header-button.yellow {
@@ -85,7 +97,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   transform: translateX(-27px);
-  /* To center it properly */
 }
 
 #terminal-body {
@@ -97,7 +108,6 @@ body {
   cursor: text;
 }
 
-/* Custom scrollbar for a better look */
 #terminal-body::-webkit-scrollbar {
   width: 8px;
 }
@@ -113,7 +123,6 @@ body {
 
 #output {
   white-space: pre-wrap;
-  /* Allows text to wrap */
   word-wrap: break-word;
 }
 
@@ -135,7 +144,6 @@ body {
 
 .command-history .prompt {
   color: #8892b0;
-  /* Dimmed prompt for history */
 }
 
 #terminal-input {
@@ -165,7 +173,6 @@ body {
 
 #terminal-input:focus::after {
   display: inline-block;
-  /* Show cursor only when focused */
 }
 
 @keyframes blink {
@@ -180,7 +187,6 @@ body {
   }
 }
 
-/* Command output styling */
 .output-line a {
   color: var(--prompt-color);
   text-decoration: underline;
@@ -235,13 +241,6 @@ body {
   line-height: 1.7;
 }
 
-@media (max-width: 600px) {
-  .project-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
 .about-output {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -256,6 +255,71 @@ body {
   object-fit: cover;
 }
 
+pre.prompt {
+  margin: 0;
+  font-family: var(--font-mono);
+  white-space: pre;
+}
+
+/* Popup Modal Styles */
+#popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#popup-modal {
+  background: var(--terminal-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+#popup-modal h2 {
+  color: var(--prompt-color);
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+#popup-modal p {
+  color: var(--text-color);
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.popup-button {
+  padding: 10px 20px;
+  border: 1px solid var(--prompt-color);
+  background: transparent;
+  color: var(--prompt-color);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.popup-button:hover {
+  background: var(--prompt-color);
+  color: var(--bg-color);
+}
 
 @media (max-width: 768px) {
   body {
@@ -281,11 +345,14 @@ body {
     max-width: 150px;
     margin-bottom: 10px;
   }
-}
 
-/* in style.css */
-pre.prompt {
-    margin: 0;
-    font-family: var(--font-mono);
-    white-space: pre; /* This overrides 'nowrap' from the .prompt class */
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #popup-modal {
+    margin: 20px;
+    padding: 20px;
+  }
 }

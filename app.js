@@ -1,3 +1,20 @@
+// Popup functions
+function showPopup() {
+  document.getElementById('popup-overlay').style.display = 'flex';
+}
+
+function closePopup() {
+  document.getElementById('popup-overlay').style.display = 'none';
+}
+
+// Close popup when clicking outside
+document.getElementById('popup-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'popup-overlay') {
+    closePopup();
+  }
+});
+
+// Your existing JavaScript
 document.addEventListener('DOMContentLoaded', () => {
   const terminalInput = document.getElementById('terminal-input');
   const output = document.getElementById('output');
@@ -55,7 +72,7 @@ You can reach out to me via:
   <span class="prompt">GitHub</span>     - <a href="https://github.com/CrazeXD" target="_blank">CrazeXD</a>
   <span class="prompt">LinkedIn</span>   - <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">Rishabh Garg</a>`,
     git: `https://github.com/CrazeXD/crazedx.github.io :)`,
-};
+  };
 
   const projectData = {
     bls: {
@@ -138,23 +155,14 @@ You can reach out to me via:
     output.appendChild(line);
   }
 
-  function typeWriter(element, text, i = 0) {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      setTimeout(() => typeWriter(element, text, i + 1), 20);
-    }
-  }
-
   function scrollToBottom() {
     terminalBody.scrollTop = terminalBody.scrollHeight;
   }
 
-  // Initial load
   function init() {
     const bannerElement = document.createElement('div');
     bannerElement.classList.add('output-line');
     output.appendChild(bannerElement);
-    // Use a simple print for banner to avoid long typing animation on load
     bannerElement.innerHTML = commands.banner;
     scrollToBottom();
   }
@@ -162,8 +170,7 @@ You can reach out to me via:
   init();
 });
 
-
-// --- PARTICLES.JS CONFIGURATION (SAME AS BEFORE) ---
+// Particles.js configuration
 particlesJS("particles-js", {
   particles: {
     number: { value: 80, density: { enable: true, value_area: 800 } },
