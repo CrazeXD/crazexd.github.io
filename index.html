@@ -1,128 +1,1043 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Garg</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
-    <meta name="description"
-        content="Rishabh Garg - High School Researcher specializing in particle physics. Published work in astrophysics. Based in Southern California.">
-    <meta name="keywords"
-        content="Rishabh Garg, high school researcher, physics, optics, particle physics, astrophysics, student research">
-    <meta name="author" content="Rishabh Garg">
+    <title>Rishabh Garg | Physics Researcher & Software Developer</title>
+    <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science. Discover projects in astrophysics, particle physics with CERN, and software development.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Open Graph for social sharing -->
-    <meta property="og:title" content="Rishabh Garg - High School Researcher">
-    <meta property="og:description"
-        content="High school researcher specializing in particle physics. Published work in astrophysics.">
-    <meta property="og:image" content="https://rishabhgarg.dev/static/DSC08945.JPG">
-    <meta property="og:url" content="https://rishabhgarg.dev">
-    <meta property="og:type" content="website">
+        :root {
+            --primary: #00f5ff;
+            --secondary: #ff006e;
+            --dark: #0a0e27;
+            --darker: #050814;
+            --light: #e0e6ff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rishabh Garg - High School Researcher">
-    <meta name="twitter:description"
-        content="High school researcher specializing in particle physics. Published work in astrophysics.">
-    <meta name="twitter:image" content="https://rishabhgarg.dev/static/DSC08945.JPG">
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at top, #1a1f3a 0%, var(--darker) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        
+        /* --- NEW: Constellations --- */
+        #constellation-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        #constellation-svg .const-line {
+            stroke: var(--primary);
+            stroke-width: 1;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: draw-line 10s ease-in-out infinite alternate;
+        }
+
+        #constellation-svg .const-line:nth-child(2) { animation-delay: -2s; }
+        #constellation-svg .const-line:nth-child(3) { animation-delay: -4s; }
+        #constellation-svg .const-line:nth-child(4) { animation-delay: -6s; }
+
+        @keyframes draw-line {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: orbit 60s infinite linear;
+            transition: transform 0.2s ease-out; /* For parallax */
+        }
+
+        .planet-1 {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #8b0000);
+            top: 15%;
+            right: 10%;
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .planet-2 {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #4dabf7, #1864ab);
+            bottom: 20%;
+            left: 15%;
+            animation-duration: 80s;
+            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4);
+        }
+
+        .planet-3 {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #ffd43b, #fab005);
+            top: 40%;
+            right: 20%;
+            animation-duration: 100s;
+            box-shadow: 0 0 50px rgba(255, 212, 59, 0.3);
+        }
+
+        .saturn-ring {
+            position: absolute;
+            width: 140px;
+            height: 30px;
+            border: 3px solid rgba(255, 212, 59, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
+        }
+
+        .spaceship {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            top: 60%;
+            left: 5%;
+            animation: fly 20s infinite ease-in-out;
+        }
+
+        .spaceship-body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .spaceship-body::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 30px solid var(--primary);
+            transform: rotate(90deg);
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+
+        .spaceship-trail {
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background: linear-gradient(to left, var(--primary), transparent);
+            right: 100%;
+            top: 50%;
+            animation: trail 0.5s infinite;
+        }
+
+        @keyframes fly {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(200px); }
+            50% { transform: translateY(-50px) translateX(400px); }
+            75% { transform: translateY(-120px) translateX(600px); }
+        }
+
+        @keyframes trail {
+            0% { opacity: 1; width: 20px; }
+            100% { opacity: 0; width: 40px; }
+        }
+
+        .accelerator {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            width: 200px;
+            height: 200px;
+        }
+
+        .accelerator-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 4s linear infinite;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            box-shadow: 0 0 10px var(--primary);
+            animation: accelerate 2s linear infinite;
+        }
+
+        .particle:nth-child(2) {
+            animation-delay: 1s;
+            background: var(--secondary);
+            box-shadow: 0 0 10px var(--secondary);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes accelerate {
+            0% { transform: rotate(0deg) translateX(95px) scale(1); opacity: 1; }
+            50% { opacity: 1; }
+            100% { transform: rotate(360deg) translateX(95px) scale(0.5); opacity: 0.3; }
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+            transition: transform 0.2s ease-out; /* For parallax */
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-1);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-2);
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--gradient-3);
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-30px, 30px) rotate(240deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+        
+        /* --- NEW: HUD Elements --- */
+        .hud-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hud-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            animation: hud-pulse 4s infinite ease-in-out;
+        }
+
+        .hud-corner::before,
+        .hud-corner::after {
+            content: '';
+            position: absolute;
+            background-color: rgba(0, 245, 255, 0.3);
+        }
+
+        .hud-corner-tl { top: 2rem; left: 2rem; }
+        .hud-corner-tl::before { width: 100%; height: 2px; top: 0; left: 0; }
+        .hud-corner-tl::after { width: 2px; height: 100%; top: 0; left: 0; }
+
+        .hud-corner-tr { top: 2rem; right: 2rem; }
+        .hud-corner-tr::before { width: 100%; height: 2px; top: 0; right: 0; }
+        .hud-corner-tr::after { width: 2px; height: 100%; top: 0; right: 0; }
+
+        .hud-corner-bl { bottom: 2rem; left: 2rem; }
+        .hud-corner-bl::before { width: 100%; height: 2px; bottom: 0; left: 0; }
+        .hud-corner-bl::after { width: 2px; height: 100%; bottom: 0; left: 0; }
+
+        .hud-corner-br { bottom: 2rem; right: 2rem; }
+        .hud-corner-br::before { width: 100%; height: 2px; bottom: 0; right: 0; }
+        .hud-corner-br::after { width: 2px; height: 100%; bottom: 0; right: 0; }
+
+        @keyframes hud-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--light);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .nav-pill {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        .nav-pill:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            position: relative;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pendulum-container {
+            position: absolute;
+            top: 0;
+            right: 5%;
+            width: 200px;
+            height: 300px;
+            opacity: 0.3;
+        }
+
+        .pendulum-string {
+            position: absolute;
+            width: 2px;
+            height: 200px;
+            background: var(--primary);
+            top: 0;
+            left: 50%;
+            transform-origin: top center;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .pendulum-bob {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 30% 30%, var(--primary), #0088cc);
+            border-radius: 50%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(25deg); }
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(224, 230, 255, 0.9);
+        }
+
+        .about-content p {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.1);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) translateX(0);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0, 245, 255, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            opacity: 0.8;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: rgba(224, 230, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--light);
+            transform: translateX(5px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.1);
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-card a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary);
+        }
+
+        .orbital-system {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            opacity: 0.4;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-1 {
+            width: 60px;
+            height: 60px;
+        }
+
+        .orbit-2 {
+            width: 100px;
+            height: 100px;
+        }
+
+        .orbit-3 {
+            width: 140px;
+            height: 140px;
+        }
+
+        .electron {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--primary);
+        }
+
+        .electron-1 {
+            animation: orbit-electron 3s linear infinite;
+        }
+
+        .electron-2 {
+            animation: orbit-electron 5s linear infinite reverse;
+        }
+
+        .electron-3 {
+            animation: orbit-electron 7s linear infinite;
+        }
+
+        @keyframes orbit-electron {
+            0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+        }
+
+        .nucleus {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .skills-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .planet, .accelerator, .spaceship, .pendulum-container, .orbital-system, .hud-elements, .shooting-star-container, #constellation-svg {
+                display: none;
+            }
+
+            .project-card:nth-child(odd),
+            .project-card:nth-child(even) {
+                transform: translateX(0);
+            }
+
+            .project-card:hover {
+                transform: translateY(-10px) translateX(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+    </style>
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Rishabh Garg",
-    "url": "https://rishabhgarg.dev",
-    "image": "https://rishabhgarg.dev/static/DSC08945.jpg",
-    "jobTitle": "High School Researcher",
-    "description": "High school student researcher specializing in particle physics. Published work in astrophysics. Based in Southern California.",
-    "email": "rgarg26@rishabhgarg.dev",
-    
-    "sameAs": [
-        "https://www.linkedin.com/in/rishabh-garg-105b67238/",
-        "https://github.com/CrazeXD",
-        "https://scholar.google.com/citations?user=YvddepcAAAAJ",
-        "https://orcid.org/0009-0006-4318-8770"
-    ],
-    
-    "knowsAbout": [
-        "Optics",
-        "Particle Physics",
-        "Astrophysics",
-        "Python",
-        "C++"
-    ],
-    
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Irvine",
-        "addressRegion": "California",
-        "addressCountry": "US"
-    },
-    
+    "url": "https://www.rishabhgarg.dev",  // Replace with your actual domain when you deploy
+    "image": "https://www.rishabhgarg.dev/static/DSC08945.JPG", // Use the full URL to your image
+    "jobTitle": "Researcher and Developer",
+    "description": "High school researcher specializing in physics and computer science, with experience in astrophysics at Caltech and particle physics.",
+    "knowsAbout": ["Physics", "Computer Science", "Data Analysis", "Python", "C++", "Scientific Computing", "Astrophysics"],
     "alumniOf": {
-    "@type": "EducationalOrganization",
-    "name": "Portola High School"
-    }
+        "@type": "Organization",
+        "name": "Caltech"
+    },
+    "sameAs": [
+        "https://github.com/CrazeXD",
+        "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"
+    ]
     }
     </script>
-    <link rel="canonical" href="https://rishabhgarg.dev">
-
 </head>
-
 <body>
-    <!-- Hidden SEO Content -->
-    <div class="seo-content" style="position: absolute; left: -9999px;" aria-hidden="true">
-        <h1>Rishabh Garg - High School Researcher in Particle Physics</h1>
-        <p>High school researcher specializing in particle physics, optics, and astrophysics. Published work in astrophysics research. Proficient in Python and C++ for scientific computing.</p>
-        
-        <h2>Research Interests</h2>
-        <ul>
-            <li>Particle Physics</li>
-            <li>Optics</li>
-            <li>Astrophysics</li>
-        </ul>
-        
-        <h2>Contact</h2>
-        <p>Email: rgarg26@rishabhgarg.dev</p>
-        <p>Location: Irvine, California</p>
-    </div>
+    <div class="hero">
+        <div class="hud-elements">
+            <div class="hud-corner hud-corner-tl"></div>
+            <div class="hud-corner hud-corner-tr"></div>
+            <div class="hud-corner hud-corner-bl"></div>
+            <div class="hud-corner hud-corner-br"></div>
+        </div>
+        <div class="hero-bg">
+            <div class="stars" id="stars"></div>
 
-    <div id="particles-js"></div>
-    <!-- rest of your code -->
-    <div id="particles-js"></div>
+            <div class="shooting-star-container">
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+                <div class="shooting-star"></div>
+            </div>
 
-    <!-- Popup Modal -->
-    <div id="popup-overlay">
-        <div id="popup-modal">
-            <h2>Leaving so soon?</h2>
-            <p>Are you sure you want to close this terminal? There's still so much to explore!</p>
-            <div class="popup-buttons">
-                <button class="popup-button" onclick="closePopup()">Stay</button>
-                <button class="popup-button" onclick="window.close()">Leave</button>
+            <svg id="constellation-svg" width="100%" height="100%">
+              <defs>
+                <circle id="c" r="2" fill="rgba(255,255,255,0.5)" />
+              </defs>
+              <use href="#c" x="15%" y="20%"/>
+              <use href="#c" x="25%" y="35%"/>
+              <use href="#c" x="10%" y="55%"/>
+              <use href="#c" x="30%" y="65%"/>
+              <use href="#c" x="70%" y="15%"/>
+              <use href="#c" x="85%" y="25%"/>
+              <use href="#c" x="75%" y="45%"/>
+              <use href="#c" x="90%" y="60%"/>
+              <use href="#c" x="80%" y="80%"/>
+
+              <line class="const-line" x1="15%" y1="20%" x2="25%" y2="35%"/>
+              <line class="const-line" x1="25%" y1="35%" x2="10%" y2="55%"/>
+              <line class="const-line" x1="10%" y1="55%" x2="30%" y2="65%"/>
+              <line class="const-line" x1="70%" y1="15%" x2="85%" y2="25%"/>
+              <line class="const-line" x1="85%" y1="25%" x2="75%" y2="45%"/>
+              <line class="const-line" x1="75%" y1="45%" x2="90%" y2="60%"/>
+              <line class="const-line" x1="90%" y1="60%" x2="80%" y2="80%"/>
+            </svg>
+            
+            <!-- Planets -->
+            <div class="planet planet-1 parallax-item" data-parallax-strength="15">
+                <div class="saturn-ring"></div>
+            </div>
+            <div class="planet planet-2 parallax-item" data-parallax-strength="25"></div>
+            <div class="planet planet-3 parallax-item" data-parallax-strength="10"></div>
+
+            <!-- Spaceship -->
+            <div class="spaceship">
+                <div class="spaceship-body">
+                    <div class="spaceship-trail"></div>
+                </div>
+            </div>
+
+            <!-- Particle Accelerator -->
+            <div class="accelerator">
+                <div class="accelerator-ring">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </div>
+
+            <div class="floating-shape shape-1 parallax-item" data-parallax-strength="-10"></div>
+            <div class="floating-shape shape-2 parallax-item" data-parallax-strength="-20"></div>
+            <div class="floating-shape shape-3 parallax-item" data-parallax-strength="-5"></div>
+        </div>
+        <div class="hero-content">
+            <img src="static/DSC08945.JPG" alt="Rishabh Garg" class="profile-image">
+            <h1>Rishabh Garg</h1>
+            <p class="tagline">High School Researcher • Physicist • Developer</p>
+            <div class="nav-pills">
+                <div class="nav-pill" onclick="scrollToSection('about')">About</div>
+                <div class="nav-pill" onclick="scrollToSection('skills')">Skills</div>
+                <div class="nav-pill" onclick="scrollToSection('projects')">Projects</div>
+                <div class="nav-pill" onclick="scrollToSection('contact')">Contact</div>
             </div>
         </div>
+        <div class="scroll-indicator"></div>
     </div>
 
-    <div id="terminal-window">
-        <div id="terminal-header">
-            <div class="header-button red" onclick="showPopup()">×</div>
-            <div class="header-button yellow"></div>
-            <div class="header-button green"></div>
-            <span class="header-title">rishabh@garg.dev — ~</span>
-        </div>
-        <div id="terminal-body" onclick="document.getElementById('terminal-input').focus();">
-            <div id="output"></div>
-            <div id="input-line" class="input-line">
-                <span class="prompt">guest@rishabhgarg.dev:~$</span>
-                <input type="text" id="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off"
-                    spellcheck="false" autofocus>
+    <section id="about" class="section">
+        <div class="pendulum-container">
+            <div class="pendulum-string">
+                <div class="pendulum-bob"></div>
             </div>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>I am a high school student at Portola High, Irvine with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging my programming skills to solve complex problems, model intricate systems, and analyze data.</p>
+            <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation.</p>
+            <p>Currently, I am involved in astrophysics research at Caltech, where I apply computational techniques to study exoplanetary atmospheres. Additionally, I am a reviewer for the Journal of Open Source Software, contributing to the open-source community by evaluating and improving scientific software tools.</p>
+            <p>Outside academics, I find balance through running and video production.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Physics & Research</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">High Energy Particle Physics</span>
+                    <span class="skill-tag">Network Analysis</span>
+                    <span class="skill-tag">Scientific Computing</span>
+                    <span class="skill-tag">Astrophysical Radiative Transfer</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">LaTeX</span>
+                    <span class="skill-tag">GoLang</span>
+                    <span class="skill-tag">Java</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">NumPy / SciPy</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">ROOT</span>
+                    <span class="skill-tag">Geant4</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="orbital-system">
+            <div class="nucleus"></div>
+            <div class="orbit orbit-1">
+                <div class="electron electron-1"></div>
+            </div>
+            <div class="orbit orbit-2">
+                <div class="electron electron-2"></div>
+            </div>
+            <div class="orbit orbit-3">
+                <div class="electron electron-3"></div>
+            </div>
+        </div>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="static/setup2.png" alt="Beamline For Schools" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Beamline For Schools Proposal</h3>
+                    <p class="project-description">Team captain for a research proposal to the CERN Beamline for Schools competition, shortlisted as a winning proposal. The project explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques, involving experimental physics, data modeling, and simulation.</p>
+                    <a href="https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf" target="_blank" class="project-link">View Details →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="static/combined_mcmc_prometheus_models-1.png" alt="Exomoon Research" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Caltech Exomoon Research</h3>
+                    <p class="project-description">Collaborated on research at Caltech with Dr. Apurva Oza to simulate the presence of exomoons around gas giant exoplanets. Published research in the Monthly Notice of the Royal Astronomical Society on sodium signatures around WASP-39b, using Monte Carlo and forward-modelling methods to align with telescope spectral data.</p>
+                    <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" class="project-link">View Details →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="static/Reddit.png" alt="Crowd Dynamics Research" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Crowd Dynamics Lab Research</h3>
+                    <p class="project-description">Conducted advanced network analysis on the terms of service of major online platforms at the University of Illinois Urbana-Champaign. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and understanding of their rights. Paper in press in the MIT URTC Proceedings 2025.</p>
+                    <a href="https://github.com/CrazeXD/ToS-Complexity" target="_blank" class="project-link">View Details →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3 class="project-title">Python Projects Collection</h3>
+                    <p class="project-description">A curated collection of my work in Python, from small scripts to complex applications. It showcases my proficiency in the language and my ability to tackle a variety of problems, including data structures, algorithms, and more.</p>
+                    <a href="https://github.com/CrazeXD?tab=repositories" target="_blank" class="project-link">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Email</h3>
+                <a href="mailto:rishabh@rishabhgarg.dev">rishabh@rishabhgarg.dev</a>
+            </div>
+            <div class="contact-card">
+                <h3>GitHub</h3>
+                <a href="https://github.com/CrazeXD" target="_blank">CrazeXD</a>
+            </div>
+            <div class="contact-card">
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">Rishabh Garg</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Section Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- NEW: Mouse Parallax Effect ---
+        document.addEventListener('mousemove', (e) => {
+            const parallaxItems = document.querySelectorAll('.parallax-item');
+            const x = (e.clientX - window.innerWidth / 2) / window.innerWidth;
+            const y = (e.clientY - window.innerHeight / 2) / window.innerHeight;
+
+            parallaxItems.forEach(item => {
+                const strength = item.getAttribute('data-parallax-strength');
+                item.style.transform = `translate(${-x * strength}px, ${-y * strength}px)`;
+            });
+        });
+    </script>
 </body>
-
 </html>
