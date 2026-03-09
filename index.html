@@ -3,1041 +3,982 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Garg | Physics Researcher & Software Developer</title>
-    <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science. Discover projects in astrophysics, particle physics with CERN, and software development.">
+    <title>Rishabh Garg | Physics Researcher & Developer</title>
+    <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="keywords" content="Rishabh Garg, physics researcher, software developer, astrophysics, particle physics, scientific computing, Caltech, CERN, MNRAS, JOSS reviewer">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
         }
 
         :root {
-            --primary: #00f5ff;
-            --secondary: #ff006e;
-            --dark: #0a0e27;
-            --darker: #050814;
-            --light: #e0e6ff;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --ink: #0d0e12;
+            --ink-mid: #1c1e26;
+            --ink-light: #2a2d3a;
+            --paper: #f4f1eb;
+            --paper-dim: #e8e4da;
+            --gold: #c8a96e;
+            --gold-light: #e2c98f;
+            --amber: #d4863a;
+            --cool: #6ea8c8;
+            --text-on-dark: #d8d4ca;
+            --text-dim: #8a8680;
+            --line: rgba(200,169,110,0.2);
+            --serif: 'DM Serif Display', Georgia, serif;
+            --mono: 'DM Mono', 'Courier New', monospace;
+            --sans: 'DM Sans', system-ui, sans-serif;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--darker);
-            color: var(--light);
+            font-family: var(--sans);
+            background: var(--ink);
+            color: var(--text-on-dark);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(13,14,18,0.95), transparent);
+            backdrop-filter: blur(4px);
+        }
+        .nav-logo {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(ellipse at top, #1a1f3a 0%, var(--darker) 100%);
-        }
-
-        .hero-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        
-        /* --- NEW: Constellations --- */
-        #constellation-svg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        #constellation-svg .const-line {
-            stroke: var(--primary);
-            stroke-width: 1;
-            stroke-dasharray: 200;
-            stroke-dashoffset: 200;
-            animation: draw-line 10s ease-in-out infinite alternate;
-        }
-
-        #constellation-svg .const-line:nth-child(2) { animation-delay: -2s; }
-        #constellation-svg .const-line:nth-child(3) { animation-delay: -4s; }
-        #constellation-svg .const-line:nth-child(4) { animation-delay: -6s; }
-
-        @keyframes draw-line {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            animation: orbit 60s infinite linear;
-            transition: transform 0.2s ease-out; /* For parallax */
-        }
-
-        .planet-1 {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #8b0000);
-            top: 15%;
-            right: 10%;
-            box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
-        }
-
-        .planet-2 {
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle at 30% 30%, #4dabf7, #1864ab);
-            bottom: 20%;
-            left: 15%;
-            animation-duration: 80s;
-            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4);
-        }
-
-        .planet-3 {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle at 30% 30%, #ffd43b, #fab005);
-            top: 40%;
-            right: 20%;
-            animation-duration: 100s;
-            box-shadow: 0 0 50px rgba(255, 212, 59, 0.3);
-        }
-
-        .saturn-ring {
-            position: absolute;
-            width: 140px;
-            height: 30px;
-            border: 3px solid rgba(255, 212, 59, 0.5);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotateX(75deg);
-        }
-
-        @keyframes orbit {
-            0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
-        }
-
-        .spaceship {
-            position: absolute;
-            width: 60px;
-            height: 30px;
-            top: 60%;
-            left: 5%;
-            animation: fly 20s infinite ease-in-out;
-        }
-
-        .spaceship-body {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .spaceship-body::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 30px solid var(--primary);
-            transform: rotate(90deg);
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-
-        .spaceship-trail {
-            position: absolute;
-            width: 20px;
-            height: 3px;
-            background: linear-gradient(to left, var(--primary), transparent);
-            right: 100%;
-            top: 50%;
-            animation: trail 0.5s infinite;
-        }
-
-        @keyframes fly {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-100px) translateX(200px); }
-            50% { transform: translateY(-50px) translateX(400px); }
-            75% { transform: translateY(-120px) translateX(600px); }
-        }
-
-        @keyframes trail {
-            0% { opacity: 1; width: 20px; }
-            100% { opacity: 0; width: 40px; }
-        }
-
-        .accelerator {
-            position: absolute;
-            bottom: 10%;
-            right: 5%;
-            width: 200px;
-            height: 200px;
-        }
-
-        .accelerator-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 4s linear infinite;
-        }
-
-        .particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            box-shadow: 0 0 10px var(--primary);
-            animation: accelerate 2s linear infinite;
-        }
-
-        .particle:nth-child(2) {
-            animation-delay: 1s;
-            background: var(--secondary);
-            box-shadow: 0 0 10px var(--secondary);
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes accelerate {
-            0% { transform: rotate(0deg) translateX(95px) scale(1); opacity: 1; }
-            50% { opacity: 1; }
-            100% { transform: rotate(360deg) translateX(95px) scale(0.5); opacity: 0.3; }
-        }
-
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: float 20s infinite ease-in-out;
-            transition: transform 0.2s ease-out; /* For parallax */
-        }
-
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--gradient-1);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--gradient-2);
-            bottom: 20%;
-            right: 15%;
-            animation-delay: 5s;
-        }
-
-        .shape-3 {
-            width: 350px;
-            height: 350px;
-            background: var(--gradient-3);
-            top: 50%;
-            left: 50%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(50px, -50px) rotate(120deg); }
-            66% { transform: translate(-30px, 30px) rotate(240deg); }
-        }
-
-        .hero-content {
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 4rem 5rem 5rem;
             position: relative;
             z-index: 2;
-            text-align: center;
-            padding: 2rem;
-            max-width: 1200px;
-        }
-        
-        /* --- NEW: HUD Elements --- */
-        .hud-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
         }
 
-        .hud-corner {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            animation: hud-pulse 4s infinite ease-in-out;
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            animation: reveal 1s ease 0.3s both;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 40px; height: 1px;
+            background: var(--gold);
         }
 
-        .hud-corner::before,
-        .hud-corner::after {
+        .hero-name {
+            font-family: var(--serif);
+            font-size: clamp(3.5rem, 6vw, 6.5rem);
+            line-height: 1.0;
+            color: var(--paper);
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: reveal 1s ease 0.5s both;
+        }
+        .hero-name em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-tagline {
+            font-family: var(--sans);
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            max-width: 380px;
+            line-height: 1.7;
+            opacity: 0;
+            animation: reveal 1s ease 0.7s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: reveal 1s ease 0.9s both;
+        }
+
+        .btn-primary {
+            padding: 0.85rem 2rem;
+            background: var(--gold);
+            color: var(--ink);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
             content: '';
             position: absolute;
-            background-color: rgba(0, 245, 255, 0.3);
+            inset: 0;
+            background: var(--amber);
+            transform: translateX(-101%);
+            transition: transform 0.3s ease;
+            z-index: 0;
         }
+        .btn-primary span { position: relative; z-index: 1; }
+        .btn-primary:hover::after { transform: translateX(0); }
+        .btn-primary:hover { box-shadow: 0 0 40px rgba(200,169,110,0.3); }
 
-        .hud-corner-tl { top: 2rem; left: 2rem; }
-        .hud-corner-tl::before { width: 100%; height: 2px; top: 0; left: 0; }
-        .hud-corner-tl::after { width: 2px; height: 100%; top: 0; left: 0; }
-
-        .hud-corner-tr { top: 2rem; right: 2rem; }
-        .hud-corner-tr::before { width: 100%; height: 2px; top: 0; right: 0; }
-        .hud-corner-tr::after { width: 2px; height: 100%; top: 0; right: 0; }
-
-        .hud-corner-bl { bottom: 2rem; left: 2rem; }
-        .hud-corner-bl::before { width: 100%; height: 2px; bottom: 0; left: 0; }
-        .hud-corner-bl::after { width: 2px; height: 100%; bottom: 0; left: 0; }
-
-        .hud-corner-br { bottom: 2rem; right: 2rem; }
-        .hud-corner-br::before { width: 100%; height: 2px; bottom: 0; right: 0; }
-        .hud-corner-br::after { width: 2px; height: 100%; bottom: 0; right: 0; }
-
-        @keyframes hud-pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
-            margin-bottom: 2rem;
-            animation: fadeIn 1s ease-out;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            animation: fadeIn 1s ease-out 0.2s both;
-        }
-
-        .tagline {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--light);
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            animation: fadeIn 1s ease-out 0.4s both;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-pills {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeIn 1s ease-out 0.6s both;
-        }
-
-        .nav-pill {
-            padding: 0.8rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            color: var(--light);
+        .btn-ghost {
+            padding: 0.85rem 2rem;
+            background: transparent;
+            color: var(--text-dim);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
             cursor: pointer;
+            border: 1px solid var(--ink-light);
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-weight: 600;
+        }
+        .btn-ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
-        .nav-pill:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        .hero-right {
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Star field canvas */
+        #starCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-image-frame {
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            max-width: 340px;
+            opacity: 0;
+            animation: rise 1.2s ease 0.4s both;
+        }
+        .hero-image-frame img {
+            width: 150%;
+            display: block;
+            filter: grayscale(20%) contrast(1.05);
+            mask-image: linear-gradient(to top, transparent 0%, black 30%);
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 30%);
+        }
+
+        /* Data panel overlaid on hero-right */
+        .hero-data {
+            position: absolute;
+            top: 50%; right: 2rem;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            z-index: 5;
+            opacity: 0;
+            animation: reveal 1s ease 1.1s both;
+        }
+        .data-item {
+            text-align: right;
+        }
+        .data-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.2rem;
+        }
+        .data-value {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        /* Horizontal rule */
+        .hero-rule {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes rise {
+            from { opacity: 0; transform: translateX(-50%) translateY(40px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* ── TICKER ── */
+        .ticker-wrap {
+            background: var(--gold);
+            overflow: hidden;
+            padding: 0.6rem 0;
+        }
+        .ticker {
+            display: flex;
+            gap: 4rem;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+        .ticker-item {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ticker-dot {
+            width: 4px; height: 4px;
+            background: var(--ink);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ── SECTIONS ── */
         .section {
-            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 8rem 3rem;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease;
-            position: relative;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .pendulum-container {
-            position: absolute;
-            top: 0;
-            right: 5%;
-            width: 200px;
-            height: 300px;
-            opacity: 0.3;
-        }
-
-        .pendulum-string {
-            position: absolute;
-            width: 2px;
-            height: 200px;
-            background: var(--primary);
-            top: 0;
-            left: 50%;
-            transform-origin: top center;
-            animation: swing 3s ease-in-out infinite;
-        }
-
-        .pendulum-bob {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle at 30% 30%, var(--primary), #0088cc);
-            border-radius: 50%;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        @keyframes swing {
-            0%, 100% { transform: rotate(-25deg); }
-            50% { transform: rotate(25deg); }
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-content {
-            display: grid;
-            gap: 2rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(224, 230, 255, 0.9);
-        }
-
-        .about-content p {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 20px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-category {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            opacity: 0.1;
-            animation: float 8s infinite ease-in-out;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.1);
-        }
-
-        .skill-category h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .skill-tags {
+        .section-header {
             display: flex;
-            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 5rem;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1.5rem;
+        }
+        .section-num {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--paper);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+        .section-title em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .about-sidebar {
+            position: sticky;
+            top: 8rem;
+        }
+        .about-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+        .about-affil {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: var(--paper);
+            margin-bottom: 0.3rem;
+        }
+        .about-affil-sub {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 1.8rem;
+        }
+
+        .about-body p {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--text-on-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        .about-body p:first-child::first-letter {
+            font-family: var(--serif);
+            font-size: 3.5rem;
+            float: left;
+            line-height: 0.8;
+            margin: 0.1em 0.1em 0 0;
+            color: var(--gold);
+        }
+        .about-body strong {
+            color: var(--paper);
+            font-weight: 500;
+        }
+
+        /* ── SKILLS ── */
+        .skills-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--line);
+        }
+        .skill-panel {
+            background: var(--ink);
+            padding: 2.5rem;
+            transition: background 0.3s ease;
+        }
+        .skill-panel:hover {
+            background: var(--ink-mid);
+        }
+        .skill-panel-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
             gap: 0.8rem;
         }
-
-        .skill-tag {
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+        .skill-panel-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .skill-list li {
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-on-dark);
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .skill-list li::before {
+            content: '';
+            display: block;
+            width: 16px; height: 1px;
+            background: var(--gold);
+            flex-shrink: 0;
         }
 
-        .projects-grid {
+        /* ── PROJECTS ── */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .project-item {
             display: grid;
+            grid-template-columns: auto 1fr auto;
             gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: start;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--line);
+            text-decoration: none;
+            color: inherit;
             transition: all 0.4s ease;
             position: relative;
+            overflow: hidden;
         }
-
-        .project-card::before {
+        .project-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
-            transition: left 0.5s;
+            inset: 0;
+            background: var(--ink-mid);
+            transform: translateX(-101%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .project-item:hover::before { transform: translateX(0); }
+        .project-item > * { position: relative; z-index: 1; }
 
-        .project-card:hover::before {
-            left: 100%;
+        .project-num {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--text-dim);
+            padding-top: 0.3rem;
+            min-width: 2.5rem;
         }
-
-        .project-card:hover {
-            transform: translateY(-10px) translateX(0);
-            border-color: var(--primary);
-            box-shadow: 0 30px 60px rgba(0, 245, 255, 0.2);
+        .project-body {}
+        .project-tag {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
         }
-
-        .project-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-            opacity: 0.8;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
         .project-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: rgba(224, 230, 255, 0.8);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .project-link {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: var(--dark);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            background: var(--light);
-            transform: translateX(5px);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.1);
-        }
-
-        .contact-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .contact-card a {
-            color: var(--light);
-            text-decoration: none;
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            color: var(--paper);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
             transition: color 0.3s ease;
         }
-
-        .contact-card a:hover {
-            color: var(--primary);
+        .project-item:hover .project-title { color: var(--gold); }
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+            font-weight: 300;
+            max-width: 500px;
+        }
+        .project-image-thumb {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            filter: grayscale(60%);
+            opacity: 0.7;
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+        .project-item:hover .project-image-thumb {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        .project-arrow {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            transition: all 0.3s ease;
+            align-self: center;
+        }
+        .project-item:hover .project-arrow {
+            color: var(--gold);
+            transform: translateX(6px);
         }
 
-        .orbital-system {
-            position: absolute;
-            bottom: 5%;
-            left: 5%;
-            width: 150px;
-            height: 150px;
-            opacity: 0.4;
+        /* ── CONTACT ── */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .contact-intro {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+            color: var(--paper);
+            line-height: 1.4;
+            font-weight: 400;
+        }
+        .contact-intro em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .contact-link-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--line);
+            transition: all 0.3s ease;
+            group: true;
+        }
+        .contact-link-item:hover { border-bottom-color: var(--gold); }
+        .contact-link-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+        .contact-link-value {
+            font-size: 1rem;
+            color: var(--paper);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .contact-link-item:hover .contact-link-value { color: var(--gold); }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        footer p {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            color: var(--text-dim);
         }
 
-        .orbit {
-            position: absolute;
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* ── DIVIDER ── */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--line), transparent);
         }
 
-        .orbit-1 {
-            width: 60px;
-            height: 60px;
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; min-height: 90vh; }
+            .hero-left { padding: 10rem 2.5rem 4rem; justify-content: center; }
+            .hero-right { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-sidebar { position: static; }
+            .skills-layout { grid-template-columns: 1fr 1fr; }
+            .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+            nav { padding: 1.2rem 2rem; }
         }
-
-        .orbit-2 {
-            width: 100px;
-            height: 100px;
-        }
-
-        .orbit-3 {
-            width: 140px;
-            height: 140px;
-        }
-
-        .electron {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--primary);
-        }
-
-        .electron-1 {
-            animation: orbit-electron 3s linear infinite;
-        }
-
-        .electron-2 {
-            animation: orbit-electron 5s linear infinite reverse;
-        }
-
-        .electron-3 {
-            animation: orbit-electron 7s linear infinite;
-        }
-
-        @keyframes orbit-electron {
-            0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
-        }
-
-        .nucleus {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--secondary);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px var(--secondary);
-        }
-
         @media (max-width: 768px) {
-            .section {
-                padding: 4rem 1.5rem;
-            }
-
-            .skills-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .planet, .accelerator, .spaceship, .pendulum-container, .orbital-system, .hud-elements, .shooting-star-container, #constellation-svg {
-                display: none;
-            }
-
-            .project-card:nth-child(odd),
-            .project-card:nth-child(even) {
-                transform: translateX(0);
-            }
-
-            .project-card:hover {
-                transform: translateY(-10px) translateX(0);
-            }
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { gap: 1.5rem; }
+            .section { padding: 5rem 1.5rem; }
+            .skills-layout { grid-template-columns: 1fr; }
+            .project-item { grid-template-columns: auto 1fr; }
+            .project-image-thumb { display: none; }
+            .project-arrow { display: none; }
+        }
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+            .hero-left { padding: 8rem 1.5rem 3rem; }
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            z-index: 10;
+        /* Page load grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
-        .scroll-indicator::before {
-            content: '↓';
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
     </style>
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Rishabh Garg",
-    "url": "https://www.rishabhgarg.dev",  // Replace with your actual domain when you deploy
-    "image": "https://www.rishabhgarg.dev/static/DSC08945.JPG", // Use the full URL to your image
-    "jobTitle": "Researcher and Developer",
-    "description": "High school researcher specializing in physics and computer science, with experience in astrophysics at Caltech and particle physics.",
-    "knowsAbout": ["Physics", "Computer Science", "Data Analysis", "Python", "C++", "Scientific Computing", "Astrophysics"],
-    "alumniOf": {
-        "@type": "Organization",
-        "name": "Caltech"
-    },
-    "sameAs": [
-        "https://github.com/CrazeXD",
-        "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"
-    ]
-    }
-    </script>
 </head>
 <body>
-    <div class="hero">
-        <div class="hud-elements">
-            <div class="hud-corner hud-corner-tl"></div>
-            <div class="hud-corner hud-corner-tr"></div>
-            <div class="hud-corner hud-corner-bl"></div>
-            <div class="hud-corner hud-corner-br"></div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Nav -->
+    <nav>
+        <div class="nav-logo">R. Garg</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="hero-eyebrow">Physics Researcher &amp; Developer</p>
+            <h1 class="hero-name">Rishabh<br><em>Garg</em></h1>
+            <p class="hero-tagline">High school researcher at the intersection of astrophysics, particle physics, and software.</p>
+            <div class="hero-cta">
+                <a class="btn-primary" href="#projects"><span>View Research →</span></a>
+                <a class="btn-ghost" href="#contact">Get in Touch</a>
+            </div>
         </div>
-        <div class="hero-bg">
-            <div class="stars" id="stars"></div>
-
-            <div class="shooting-star-container">
-                <div class="shooting-star"></div>
-                <div class="shooting-star"></div>
-                <div class="shooting-star"></div>
+        <div class="hero-right">
+            <canvas id="starCanvas"></canvas>
+            <div class="hero-image-frame">
+                <img src="static/DSC08945.JPG" alt="Rishabh Garg">
             </div>
-
-            <svg id="constellation-svg" width="100%" height="100%">
-              <defs>
-                <circle id="c" r="2" fill="rgba(255,255,255,0.5)" />
-              </defs>
-              <use href="#c" x="15%" y="20%"/>
-              <use href="#c" x="25%" y="35%"/>
-              <use href="#c" x="10%" y="55%"/>
-              <use href="#c" x="30%" y="65%"/>
-              <use href="#c" x="70%" y="15%"/>
-              <use href="#c" x="85%" y="25%"/>
-              <use href="#c" x="75%" y="45%"/>
-              <use href="#c" x="90%" y="60%"/>
-              <use href="#c" x="80%" y="80%"/>
-
-              <line class="const-line" x1="15%" y1="20%" x2="25%" y2="35%"/>
-              <line class="const-line" x1="25%" y1="35%" x2="10%" y2="55%"/>
-              <line class="const-line" x1="10%" y1="55%" x2="30%" y2="65%"/>
-              <line class="const-line" x1="70%" y1="15%" x2="85%" y2="25%"/>
-              <line class="const-line" x1="85%" y1="25%" x2="75%" y2="45%"/>
-              <line class="const-line" x1="75%" y1="45%" x2="90%" y2="60%"/>
-              <line class="const-line" x1="90%" y1="60%" x2="80%" y2="80%"/>
-            </svg>
-            
-            <!-- Planets -->
-            <div class="planet planet-1 parallax-item" data-parallax-strength="15">
-                <div class="saturn-ring"></div>
-            </div>
-            <div class="planet planet-2 parallax-item" data-parallax-strength="25"></div>
-            <div class="planet planet-3 parallax-item" data-parallax-strength="10"></div>
-
-            <!-- Spaceship -->
-            <div class="spaceship">
-                <div class="spaceship-body">
-                    <div class="spaceship-trail"></div>
+            <div class="hero-data">
+                <div class="data-item">
+                    <div class="data-label">Published in</div>
+                    <div class="data-value">MNRAS</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Researching with</div>
+                    <div class="data-value">Caltech / JPL </div>
                 </div>
             </div>
-
-            <!-- Particle Accelerator -->
-            <div class="accelerator">
-                <div class="accelerator-ring">
-                    <div class="particle"></div>
-                    <div class="particle"></div>
-                </div>
-            </div>
-
-            <div class="floating-shape shape-1 parallax-item" data-parallax-strength="-10"></div>
-            <div class="floating-shape shape-2 parallax-item" data-parallax-strength="-20"></div>
-            <div class="floating-shape shape-3 parallax-item" data-parallax-strength="-5"></div>
+            <div class="hero-rule"></div>
         </div>
-        <div class="hero-content">
-            <img src="static/DSC08945.JPG" alt="Rishabh Garg" class="profile-image">
-            <h1>Rishabh Garg</h1>
-            <p class="tagline">High School Researcher • Physicist • Developer</p>
-            <div class="nav-pills">
-                <div class="nav-pill" onclick="scrollToSection('about')">About</div>
-                <div class="nav-pill" onclick="scrollToSection('skills')">Skills</div>
-                <div class="nav-pill" onclick="scrollToSection('projects')">Projects</div>
-                <div class="nav-pill" onclick="scrollToSection('contact')">Contact</div>
-            </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ticker-wrap" aria-hidden="true">
+        <div class="ticker">
+            <span class="ticker-item"><span class="ticker-dot"></span> Astrophysics Research — Caltech</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> CERN Beamline for Schools — Shortlisted Winner</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Published: Monthly Notices of the Royal Astronomical Society</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> JOSS Reviewer</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Portola High School, Irvine</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Astrophysics Research — Caltech</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> CERN Beamline for Schools — Shortlisted Winner</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Published: Monthly Notices of the Royal Astronomical Society</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> JOSS Reviewer</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Portola High School, Irvine</span>
         </div>
-        <div class="scroll-indicator"></div>
     </div>
 
+    <!-- About -->
     <section id="about" class="section">
-        <div class="pendulum-container">
-            <div class="pendulum-string">
-                <div class="pendulum-bob"></div>
-            </div>
+        <div class="section-header">
+            <span class="section-num">01</span>
+            <h2 class="section-title">About <em>Me</em></h2>
+            <div class="section-line"></div>
         </div>
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <p>I am a high school student at Portola High, Irvine with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging my programming skills to solve complex problems, model intricate systems, and analyze data.</p>
-            <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation.</p>
-            <p>Currently, I am involved in astrophysics research at Caltech, where I apply computational techniques to study exoplanetary atmospheres. Additionally, I am a reviewer for the Journal of Open Source Software, contributing to the open-source community by evaluating and improving scientific software tools.</p>
-            <p>Outside academics, I find balance through running and video production.</p>
+        <div class="about-grid">
+            <div class="about-sidebar">
+                <div class="about-label">Current Position</div>
+                <div class="about-affil">Caltech</div>
+                <div class="about-affil-sub">Astrophysics Researcher</div>
+
+                <div class="about-label">Competition</div>
+                <div class="about-affil">CERN Beamline for Schools</div>
+                <div class="about-affil-sub">Team Captain &amp; Shortlisted Winner</div>
+
+                <div class="about-label">Publication</div>
+                <div class="about-affil">Monthly Notices of the Royal Astronomical Society</div>
+                <div class="about-affil-sub">Exomoon Research (2025)</div>
+
+                <div class="about-label">Reviewer</div>
+                <div class="about-affil">JOSS</div>
+                <div class="about-affil-sub">Journal of Open Source Software</div>
+            </div>
+            <div class="about-body">
+                <p>I am a high school student at <strong>Portola High, Irvine</strong> with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
+                <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation. Currently, I am involved in <strong>astrophysics research at Caltech</strong>, where I apply computational techniques to study exoplanetary atmospheres. I am also a reviewer for the <strong>Journal of Open Source Software</strong>, contributing to the open-source community by evaluating scientific software tools.</p>
+                <p>Outside of academics, I find balance through running and video production.</p>
+            </div>
         </div>
     </section>
 
+    <div class="divider"></div>
+
+    <!-- Skills -->
     <section id="skills" class="section">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Physics & Research</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">High Energy Particle Physics</span>
-                    <span class="skill-tag">Network Analysis</span>
-                    <span class="skill-tag">Scientific Computing</span>
-                    <span class="skill-tag">Astrophysical Radiative Transfer</span>
-                </div>
+        <div class="section-header">
+            <span class="section-num">02</span>
+            <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="skills-layout">
+            <div class="skill-panel">
+                <div class="skill-panel-label">Physics &amp; Research</div>
+                <ul class="skill-list">
+                    <li>Data Analysis</li>
+                    <li>High Energy Particle Physics</li>
+                    <li>Network Analysis</li>
+                    <li>Scientific Computing</li>
+                    <li>Astrophysical Radiative Transfer</li>
+                </ul>
             </div>
-            <div class="skill-category">
-                <h3>Programming</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">LaTeX</span>
-                    <span class="skill-tag">GoLang</span>
-                    <span class="skill-tag">Java</span>
-                </div>
+            <div class="skill-panel">
+                <div class="skill-panel-label">Programming</div>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>LaTeX</li>
+                    <li>Go</li>
+                    <li>Java</li>
+                </ul>
             </div>
-            <div class="skill-category">
-                <h3>Tools & Technologies</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Linux</span>
-                    <span class="skill-tag">NumPy / SciPy</span>
-                    <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">ROOT</span>
-                    <span class="skill-tag">Geant4</span>
-                </div>
+            <div class="skill-panel">
+                <div class="skill-panel-label">Tools &amp; Technologies</div>
+                <ul class="skill-list">
+                    <li>Git / Linux</li>
+                    <li>NumPy / SciPy</li>
+                    <li>Matplotlib</li>
+                    <li>ROOT (CERN)</li>
+                    <li>Geant4</li>
+                </ul>
             </div>
         </div>
     </section>
 
+    <div class="divider"></div>
+
+    <!-- Projects -->
     <section id="projects" class="section">
-        <div class="orbital-system">
-            <div class="nucleus"></div>
-            <div class="orbit orbit-1">
-                <div class="electron electron-1"></div>
-            </div>
-            <div class="orbit orbit-2">
-                <div class="electron electron-2"></div>
-            </div>
-            <div class="orbit orbit-3">
-                <div class="electron electron-3"></div>
-            </div>
+        <div class="section-header">
+            <span class="section-num">03</span>
+            <h2 class="section-title">Featured <em>Projects</em></h2>
+            <div class="section-line"></div>
         </div>
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="static/setup2.png" alt="Beamline For Schools" class="project-image">
-                <div class="project-content">
+        <div class="projects-list">
+
+            <a href="https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf" target="_blank" class="project-item">
+                <span class="project-num">01</span>
+                <div class="project-body">
+                    <div class="project-tag">Particle Physics · CERN</div>
                     <h3 class="project-title">Beamline For Schools Proposal</h3>
-                    <p class="project-description">Team captain for a research proposal to the CERN Beamline for Schools competition, shortlisted as a winning proposal. The project explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques, involving experimental physics, data modeling, and simulation.</p>
-                    <a href="https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf" target="_blank" class="project-link">View Details →</a>
+                    <p class="project-desc">Team captain for a research proposal to the CERN BL4S competition, shortlisted as a winning proposal. Explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques.</p>
                 </div>
-            </div>
+                <img src="static/setup2.png" alt="CERN Beamline" class="project-image-thumb">
+                <span class="project-arrow">→</span>
+            </a>
 
-            <div class="project-card">
-                <img src="static/combined_mcmc_prometheus_models-1.png" alt="Exomoon Research" class="project-image">
-                <div class="project-content">
+            <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" class="project-item">
+                <span class="project-num">02</span>
+                <div class="project-body">
+                    <div class="project-tag">Astrophysics · Caltech · MNRAS</div>
                     <h3 class="project-title">Caltech Exomoon Research</h3>
-                    <p class="project-description">Collaborated on research at Caltech with Dr. Apurva Oza to simulate the presence of exomoons around gas giant exoplanets. Published research in the Monthly Notice of the Royal Astronomical Society on sodium signatures around WASP-39b, using Monte Carlo and forward-modelling methods to align with telescope spectral data.</p>
-                    <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" class="project-link">View Details →</a>
+                    <p class="project-desc">Collaborated with Dr. Apurva Oza to simulate exomoons around gas giant exoplanets. Published in Monthly Notices of the Royal Astronomical Society — sodium signatures around WASP-39b.</p>
                 </div>
-            </div>
+                <img src="static/combined_mcmc_prometheus_models-1.png" alt="Exomoon" class="project-image-thumb">
+                <span class="project-arrow">→</span>
+            </a>
 
-            <div class="project-card">
-                <img src="static/Reddit.png" alt="Crowd Dynamics Research" class="project-image">
-                <div class="project-content">
+            <a href="https://github.com/CrazeXD/Prometheus" target="_blank" class="project-item">
+                <span class="project-num">03</span>
+                <div class="project-body">
+                    <div class="project-tag">Astrophysics · Caltech</div>
+                    <h3 class="project-title">PROMETHEUS: Radiative Transfer Optimization</h3>
+                    <p class="project-desc">Vectorized the radiative transfer software PROMETHEUS for improved performance and scalability, enabling inverse modeling of complex astrophysical scenarios.</p>
+                </div>
+                <img src="static/C_UV_08.png" alt="Exomoon" class="project-image-thumb">
+                <span class="project-arrow">→</span>
+            </a>
+
+            <a href="https://github.com/CrazeXD/ToS-Complexity" target="_blank" class="project-item">
+                <span class="project-num">04</span>
+                <div class="project-body">
+                    <div class="project-tag">Network Analysis · UIUC</div>
                     <h3 class="project-title">Crowd Dynamics Lab Research</h3>
-                    <p class="project-description">Conducted advanced network analysis on the terms of service of major online platforms at the University of Illinois Urbana-Champaign. The research focused on developing novel algorithms to parse, analyze, and visualize complex legal text, enhancing user transparency and understanding of their rights. Paper in press in the MIT URTC Proceedings 2025.</p>
-                    <a href="https://github.com/CrazeXD/ToS-Complexity" target="_blank" class="project-link">View Details →</a>
+                    <p class="project-desc">Network analysis of terms of service of major online platforms at UIUC. Novel algorithms to parse, analyze, and visualize complex legal text — enhancing user transparency and rights understanding.</p>
                 </div>
-            </div>
+                <img src="static/Reddit.png" alt="Network Analysis" class="project-image-thumb">
+                <span class="project-arrow">→</span>
+            </a>
 
-            <div class="project-card">
-                <div class="project-content">
+            <a href="https://github.com/CrazeXD?tab=repositories" target="_blank" class="project-item">
+                <span class="project-num">05</span>
+                <div class="project-body">
+                    <div class="project-tag">Software Development · GitHub</div>
                     <h3 class="project-title">Python Projects Collection</h3>
-                    <p class="project-description">A curated collection of my work in Python, from small scripts to complex applications. It showcases my proficiency in the language and my ability to tackle a variety of problems, including data structures, algorithms, and more.</p>
-                    <a href="https://github.com/CrazeXD?tab=repositories" target="_blank" class="project-link">View Details →</a>
+                    <p class="project-desc">A curated collection of Python work — from small scripts to complex applications. Demonstrates proficiency in data structures, algorithms, and scientific programming.</p>
                 </div>
+                <span class="project-arrow">→</span>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <span class="section-num">04</span>
+            <h2 class="section-title">Get In <em>Touch</em></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="contact-layout">
+            <div class="contact-intro">
+                Interested in collaborating on research or a project? I'd love to <em>hear from you.</em>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:rishabh@rishabhgarg.dev" class="contact-link-item">
+                    <span class="contact-link-label">Email</span>
+                    <span class="contact-link-value">rishabhgarg@rishabhgarg.dev</span>
+                </a>
+                <a href="https://github.com/CrazeXD" target="_blank" class="contact-link-item">
+                    <span class="contact-link-label">GitHub</span>
+                    <span class="contact-link-value">CrazeXD</span>
+                </a>
+                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank" class="contact-link-item">
+                    <span class="contact-link-label">LinkedIn</span>
+                    <span class="contact-link-value">Rishabh Garg</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <h3>Email</h3>
-                <a href="mailto:rishabh@rishabhgarg.dev">rishabh@rishabhgarg.dev</a>
-            </div>
-            <div class="contact-card">
-                <h3>GitHub</h3>
-                <a href="https://github.com/CrazeXD" target="_blank">CrazeXD</a>
-            </div>
-            <div class="contact-card">
-                <h3>LinkedIn</h3>
-                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank">Rishabh Garg</a>
-            </div>
-        </div>
-    </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Rishabh Garg</p>
+        <p>Physics Researcher · Developer · Irvine, CA</p>
+    </footer>
 
     <script>
-        // Create stars
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starsContainer.appendChild(star);
+
+        // ── Star Canvas ──
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas ? canvas.getContext('2d') : null;
+        let stars = [];
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            initStars();
         }
 
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        function initStars() {
+            stars = [];
+            const n = Math.floor((canvas.width * canvas.height) / 4000);
+            for (let i = 0; i < n; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.2 + 0.2,
+                    a: Math.random(),
+                    speed: Math.random() * 0.004 + 0.001,
+                    phase: Math.random() * Math.PI * 2,
+                    gold: Math.random() < 0.08
+                });
+            }
         }
-        
-        // Section Intersection Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        function drawStars(t) {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                const alpha = 0.3 + 0.5 * Math.sin(s.phase + t * s.speed);
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = s.gold
+                    ? `rgba(200,169,110,${alpha * 0.8})`
+                    : `rgba(216,212,202,${alpha})`;
+                ctx.fill();
             });
-        }, observerOptions);
+            requestAnimationFrame(drawStars);
+        }
 
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
+        if (canvas) {
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            requestAnimationFrame(drawStars);
+        }
 
-        // --- NEW: Mouse Parallax Effect ---
-        document.addEventListener('mousemove', (e) => {
-            const parallaxItems = document.querySelectorAll('.parallax-item');
-            const x = (e.clientX - window.innerWidth / 2) / window.innerWidth;
-            const y = (e.clientY - window.innerHeight / 2) / window.innerHeight;
+        // ── Scroll Reveal ──
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
-            parallaxItems.forEach(item => {
-                const strength = item.getAttribute('data-parallax-strength');
-                item.style.transform = `translate(${-x * strength}px, ${-y * strength}px)`;
-            });
-        });
+        document.querySelectorAll('.section').forEach(s => observer.observe(s));
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rishabh Garg",
+      "url": "https://www.rishabhgarg.dev",
+      "jobTitle": "Researcher and Developer",
+      "knowsAbout": ["Physics", "Computer Science", "Astrophysics"],
+      "sameAs": ["https://github.com/CrazeXD", "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"]
+    }
     </script>
 </body>
 </html>
