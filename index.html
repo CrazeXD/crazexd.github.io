@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishabh Garg | Physics Researcher & Developer</title>
-    <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science.">
+    <meta name="description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in physics and computer science. Published in MNRAS, Caltech researcher, CERN Beamline for Schools winner.">
+    <meta name="keywords" content="Rishabh Garg, physics researcher, software developer, astrophysics, particle physics, scientific computing, Caltech, CERN, MNRAS, JOSS reviewer, exoplanet research">
+    <meta name="author" content="Rishabh Garg">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rishabhgarg.dev">
+    <meta property="og:title" content="Rishabh Garg | Physics Researcher & Developer">
+    <meta property="og:description" content="Portfolio of Rishabh Garg, a high school researcher and developer specializing in astrophysics and particle physics. Published in MNRAS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rishabhgarg.dev">
+    <meta property="og:image" content="https://rishabhgarg.dev/static/DSC08945.png">
+    <meta property="og:image:alt" content="Rishabh Garg, physics researcher and developer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rishabh Garg | Physics Researcher & Developer">
+    <meta name="twitter:description" content="Portfolio of Rishabh Garg, a high school researcher specializing in astrophysics and particle physics.">
+    <meta name="twitter:image" content="https://rishabhgarg.dev/static/DSC08945.png">
+    <meta name="twitter:image:alt" content="Rishabh Garg, physics researcher and developer">
+    <meta name="theme-color" content="#0d0e12">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://github.com">
+    <link rel="dns-prefetch" href="https://www.linkedin.com">
+    <link rel="preload" as="image" href="static/DSC08945.png" imagesrcset="static/DSC08945.png 1x">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <meta name="keywords" content="Rishabh Garg, physics researcher, software developer, astrophysics, particle physics, scientific computing, Caltech, CERN, MNRAS, JOSS reviewer">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d0e12'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='serif' font-weight='bold' font-size='60' fill='%23c8a96e'>R</text></svg>">
     <style>
         *, *::before, *::after {
             margin: 0; padding: 0; box-sizing: border-box;
@@ -100,7 +119,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 0 4rem 5rem 5rem;
+            padding: 0 4rem 5rem 7rem;
             position: relative;
             z-index: 2;
         }
@@ -220,7 +239,7 @@
 
         .hero-image-frame {
             position: absolute;
-            bottom: 0; left: 40%;
+            bottom: 0; left: 30%;
             transform: translateX(-50%);
             width: 70%;
             max-width: 340px;
@@ -228,7 +247,7 @@
             animation: rise 1.2s ease 0.4s both;
         }
         .hero-image-frame img {
-            width: 200%;
+            width: 250%;
             display: block;
             filter: grayscale(20%) contrast(1.05);
             mask-image: linear-gradient(to top, transparent 0%, black 30%);
@@ -478,7 +497,7 @@
             grid-template-columns: auto 1fr auto;
             gap: 3rem;
             align-items: start;
-            padding: 3rem 0;
+            padding: 3rem 1rem;
             border-bottom: 1px solid var(--line);
             text-decoration: none;
             color: inherit;
@@ -532,10 +551,11 @@
             max-width: 500px;
         }
         .project-image-thumb {
-            width: 180px;
-            height: 120px;
+            width: 240px;
+            height: 160px;
             object-fit: cover;
             filter: grayscale(60%);
+            padding: 1rem 0 1rem 0;
             opacity: 0.7;
             transition: all 0.4s ease;
             flex-shrink: 0;
@@ -699,7 +719,7 @@
         <div class="hero-right">
             <canvas id="starCanvas"></canvas>
             <div class="hero-image-frame">
-                <img src="static/DSC08945.png" alt="Rishabh Garg">
+                <img src="static/DSC08945.png" alt="Rishabh Garg, high school physics researcher and software developer" loading="lazy">
             </div>
             <div class="hero-data">
                 <div class="data-item">
@@ -820,51 +840,51 @@
         </div>
         <div class="projects-list">
 
-            <a href="https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf" target="_blank" class="project-item">
+            <a href="https://beamline-for-schools.web.cern.ch/sites/default/files/BL4S_all-winners_2025.pdf" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">01</span>
                 <div class="project-body">
                     <div class="project-tag">Particle Physics · CERN</div>
                     <h3 class="project-title">Beamline For Schools Proposal</h3>
                     <p class="project-desc">Team captain for a research proposal to the CERN BL4S competition, shortlisted as a winning proposal. Explores relativistic electron particle beam cross sections to improve high-accuracy beam collimation techniques.</p>
                 </div>
-                <img src="static/setup2.png" alt="CERN Beamline" class="project-image-thumb">
+                <img src="static/setup2.png" alt="CERN Beamline experimental setup for relativistic electron particle beam research" loading="lazy" class="project-image-thumb">
                 <span class="project-arrow">→</span>
             </a>
 
-            <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" class="project-item">
+            <a href="https://academic.oup.com/mnras/advance-article/doi/10.1093/mnras/staf1526/8263929" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">02</span>
                 <div class="project-body">
                     <div class="project-tag">Astrophysics · Caltech · MNRAS</div>
                     <h3 class="project-title">Caltech Exomoon Research</h3>
                     <p class="project-desc">Collaborated with Dr. Apurva Oza to simulate exomoons around gas giant exoplanets. Published in Monthly Notices of the Royal Astronomical Society with analysis of sodium signatures around WASP-39b.</p>
                 </div>
-                <img src="static/combined_mcmc_prometheus_models-1.png" alt="Exomoon" class="project-image-thumb">
+                <img src="static/combined_mcmc_prometheus_models-1.png" alt="MCMC simulation results showing sodium signatures in exomoon atmospheres around WASP-39b" loading="lazy" class="project-image-thumb">
                 <span class="project-arrow">→</span>
             </a>
 
-            <a href="https://github.com/CrazeXD/Prometheus" target="_blank" class="project-item">
+            <a href="https://github.com/CrazeXD/Prometheus" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">03</span>
                 <div class="project-body">
                     <div class="project-tag">Astrophysics · Caltech</div>
                     <h3 class="project-title">PROMETHEUS: Radiative Transfer Optimization</h3>
                     <p class="project-desc">Vectorized the radiative transfer software PROMETHEUS for improved performance and scalability, enabling inverse modeling of complex astrophysical scenarios.</p>
                 </div>
-                <img src="static/C_UV_08.png" alt="Exomoon" class="project-image-thumb">
+                <img src="static/C_UV_08.png" alt="Radiative transfer model visualization showing ultraviolet wavelength analysis for exoplanet atmospheres" loading="lazy" class="project-image-thumb">
                 <span class="project-arrow">→</span>
             </a>
 
-            <a href="https://github.com/CrazeXD/ToS-Complexity" target="_blank" class="project-item">
+            <a href="https://github.com/CrazeXD/ToS-Complexity" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">04</span>
                 <div class="project-body">
                     <div class="project-tag">Network Analysis · UIUC</div>
                     <h3 class="project-title">Crowd Dynamics Lab Research</h3>
                     <p class="project-desc">Network analysis of terms of service of major online platforms at UIUC. Novel algorithms to parse, analyze, and visualize complex legal text in order to enhance user transparency and rights understanding.</p>
                 </div>
-                <img src="static/Reddit.png" alt="Network Analysis" class="project-image-thumb">
+                <img src="static/Reddit.png" alt="Network analysis visualization of Reddit's terms of service document structure and complexity" loading="lazy" class="project-image-thumb">
                 <span class="project-arrow">→</span>
             </a>
 
-            <a href="https://github.com/CrazeXD?tab=repositories" target="_blank" class="project-item">
+            <a href="https://github.com/CrazeXD?tab=repositories" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">05</span>
                 <div class="project-body">
                     <div class="project-tag">Software Development · GitHub</div>
@@ -895,11 +915,11 @@
                     <span class="contact-link-label">Email</span>
                     <span class="contact-link-value">rishabhgarg@rishabhgarg.dev</span>
                 </a>
-                <a href="https://github.com/CrazeXD" target="_blank" class="contact-link-item">
+                <a href="https://github.com/CrazeXD" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                     <span class="contact-link-label">GitHub</span>
                     <span class="contact-link-value">CrazeXD</span>
                 </a>
-                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank" class="contact-link-item">
+                <a href="https://www.linkedin.com/in/rishabh-garg-34a5a51b7/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                     <span class="contact-link-label">LinkedIn</span>
                     <span class="contact-link-value">Rishabh Garg</span>
                 </a>
@@ -909,7 +929,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Rishabh Garg</p>
+        <p>© 2026 Rishabh Garg</p>
         <p>Physics Researcher · Developer · Irvine, CA</p>
     </footer>
 
@@ -976,10 +996,41 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Rishabh Garg",
-      "url": "https://www.rishabhgarg.dev",
+      "url": "https://rishabhgarg.dev",
+      "image": "https://rishabhgarg.dev/static/DSC08945.png",
       "jobTitle": "Researcher and Developer",
-      "knowsAbout": ["Physics", "Computer Science", "Astrophysics"],
-      "sameAs": ["https://github.com/CrazeXD", "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"]
+      "affiliation": [
+        {
+          "@type": "Organization",
+          "name": "Caltech",
+          "url": "https://caltech.edu"
+        },
+        {
+          "@type": "Organization",
+          "name": "Portola High School",
+          "url": "https://www.iusd.org/domain/2015"
+        }
+      ],
+      "knowsAbout": [
+        "Physics",
+        "Computer Science",
+        "Astrophysics",
+        "Particle Physics",
+        "Scientific Computing",
+        "Python",
+        "Data Analysis"
+      ],
+      "worksfor": {
+        "@type": "Organization",
+        "name": "Caltech"
+      },
+      "sameAs": [
+        "https://github.com/CrazeXD",
+        "https://www.linkedin.com/in/rishabh-garg-34a5a51b7/"
+      ],
+      "email": "rishabh@rishabhgarg.dev",
+      "description": "High school researcher at the intersection of astrophysics, particle physics, and software development. Published in Monthly Notices of the Royal Astronomical Society.",
+      "knowsLanguage": ["English"]
     }
     </script>
 </body>
