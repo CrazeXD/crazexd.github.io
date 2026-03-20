@@ -696,7 +696,7 @@
 
     <!-- Nav -->
     <nav>
-        <div class="nav-logo">R. Garg</div>
+        <div class="nav-logo" id="nav-logo">R. Garg</div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -708,12 +708,12 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-left">
-            <p class="hero-eyebrow">Physics Researcher &amp; Developer</p>
-            <h1 class="hero-name">Rishabh<br><em>Garg</em></h1>
-            <p class="hero-tagline">High school researcher at the intersection of astrophysics, particle physics, and software.</p>
+            <p class="hero-eyebrow" id="hero-eyebrow">Physics Researcher &amp; Developer</p>
+            <h1 class="hero-name" id="hero-name">Rishabh<br><em>Garg</em></h1>
+            <p class="hero-tagline" id="hero-tagline">High school researcher at the intersection of astrophysics, particle physics, and software.</p>
             <div class="hero-cta">
-                <a class="btn-primary" href="#projects"><span>View Research →</span></a>
-                <a class="btn-ghost" href="#contact">Get in Touch</a>
+                <a class="btn-primary" id="hero-btn-primary" href="#projects"><span>View Research →</span></a>
+                <a class="btn-ghost" id="hero-btn-ghost" href="#contact">Get in Touch</a>
             </div>
         </div>
         <div class="hero-right">
@@ -721,14 +721,14 @@
             <div class="hero-image-frame">
                 <img src="static/DSC08945.png" alt="Rishabh Garg, high school physics researcher and software developer" loading="lazy">
             </div>
-            <div class="hero-data">
+            <div class="hero-data" id="hero-data">
                 <div class="data-item">
                     <div class="data-label">Published in</div>
                     <div class="data-value">MNRAS</div>
                 </div>
                 <div class="data-item">
                     <div class="data-label">Researching with</div>
-                    <div class="data-value">Caltech / JPL </div>
+                    <div class="data-value">Caltech / JPL</div>
                 </div>
             </div>
             <div class="hero-rule"></div>
@@ -737,7 +737,7 @@
 
     <!-- Ticker -->
     <div class="ticker-wrap" aria-hidden="true">
-        <div class="ticker">
+        <div class="ticker" id="ticker">
             <span class="ticker-item"><span class="ticker-dot"></span> Astrophysics Research — Caltech</span>
             <span class="ticker-item"><span class="ticker-dot"></span> CERN Beamline for Schools — Shortlisted Winner</span>
             <span class="ticker-item"><span class="ticker-dot"></span> Published: Monthly Notices of the Royal Astronomical Society</span>
@@ -761,7 +761,7 @@
             <div class="section-line"></div>
         </div>
         <div class="about-grid">
-            <div class="about-sidebar">
+            <div class="about-sidebar" id="about-sidebar">
                 <div class="about-label">Current Position</div>
                 <div class="about-affil">Caltech</div>
                 <div class="about-affil-sub">Astrophysics Researcher</div>
@@ -778,7 +778,7 @@
                 <div class="about-affil">JOSS</div>
                 <div class="about-affil-sub">Journal of Open Source Software</div>
             </div>
-            <div class="about-body">
+            <div class="about-body" id="about-body">
                 <p>I am a high school student at <strong>Portola High, Irvine</strong> with a deep passion for the interwoven fields of physics and computer science. I am fascinated by the fundamental laws that govern our universe, and I enjoy leveraging programming to solve complex problems, model intricate systems, and analyze data at scale.</p>
                 <p>My goal is to pursue a career that allows me to combine these two fields to push the boundaries of scientific research and technological innovation. Currently, I am involved in <strong>astrophysics research at Caltech</strong>, where I apply computational techniques to study exoplanetary atmospheres. I am also a reviewer for the <strong>Journal of Open Source Software</strong>, contributing to the open-source community by evaluating scientific software tools.</p>
                 <p>Outside of academics, I find balance through running and video production.</p>
@@ -795,7 +795,7 @@
             <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
             <div class="section-line"></div>
         </div>
-        <div class="skills-layout">
+        <div class="skills-layout" id="skills-layout">
             <div class="skill-panel">
                 <div class="skill-panel-label">Physics &amp; Research</div>
                 <ul class="skill-list">
@@ -838,7 +838,7 @@
             <h2 class="section-title">Featured <em>Projects</em></h2>
             <div class="section-line"></div>
         </div>
-        <div class="projects-list">
+        <div class="projects-list" id="projects-list">
 
             <a href="https://beamlineforschools.cern/wp-content/uploads/2025/12/BL4S_all-winners_2025.pdf" target="_blank" rel="noopener noreferrer" class="project-item">
                 <span class="project-num">01</span>
@@ -907,10 +907,10 @@
             <div class="section-line"></div>
         </div>
         <div class="contact-layout">
-            <div class="contact-intro">
+            <div class="contact-intro" id="contact-intro">
                 Interested in collaborating on research or a project? I'd love to <em>hear from you.</em>
             </div>
-            <div class="contact-links">
+            <div class="contact-links" id="contact-links">
                 <a href="mailto:rishabh@rishabhgarg.dev" class="contact-link-item">
                     <span class="contact-link-label">Email</span>
                     <span class="contact-link-value">rishabhgarg@rishabhgarg.dev</span>
@@ -929,8 +929,8 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Rishabh Garg</p>
-        <p>Physics Researcher · Developer · Irvine, CA</p>
+        <p id="footer-copyright">© 2026 Rishabh Garg</p>
+        <p id="footer-tagline">Physics Researcher · Developer · Irvine, CA</p>
     </footer>
 
     <script>
@@ -991,6 +991,152 @@
 
         document.querySelectorAll('.section').forEach(s => observer.observe(s));
     </script>
+    <script>
+        // ── CMS Content Loader ──
+        // Fetches live content from the admin server. If the server is unreachable,
+        // the page falls back to the hardcoded HTML above with no visible difference.
+        (function () {
+            const CMS_URL = 'https://admin.rishabhgarg.dev';
+
+            function el(id) { return document.getElementById(id); }
+
+            function esc(str) {
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+            }
+
+            function renderContent(c) {
+                // Nav
+                if (c.nav?.logo) el('nav-logo').textContent = c.nav.logo;
+
+                // Hero
+                if (c.hero) {
+                    const h = c.hero;
+                    if (h.eyebrow) el('hero-eyebrow').textContent = h.eyebrow;
+                    if (h.firstName || h.lastName) {
+                        el('hero-name').innerHTML =
+                            esc(h.firstName || 'Rishabh') + '<br><em>' + esc(h.lastName || 'Garg') + '</em>';
+                    }
+                    if (h.tagline) el('hero-tagline').textContent = h.tagline;
+                    if (h.primaryBtn) {
+                        const btn = el('hero-btn-primary');
+                        btn.href = h.primaryBtn.href || btn.href;
+                        btn.querySelector('span').textContent = h.primaryBtn.text || btn.querySelector('span').textContent;
+                    }
+                    if (h.ghostBtn) {
+                        const btn = el('hero-btn-ghost');
+                        btn.href = h.ghostBtn.href || btn.href;
+                        btn.textContent = h.ghostBtn.text || btn.textContent;
+                    }
+                    if (Array.isArray(h.dataPanel) && h.dataPanel.length) {
+                        el('hero-data').innerHTML = h.dataPanel.map(d =>
+                            '<div class="data-item">' +
+                            '<div class="data-label">' + esc(d.label) + '</div>' +
+                            '<div class="data-value">' + esc(d.value) + '</div>' +
+                            '</div>'
+                        ).join('');
+                    }
+                }
+
+                // Ticker — items duplicated for seamless infinite scroll
+                if (Array.isArray(c.ticker) && c.ticker.length) {
+                    const doubled = [...c.ticker, ...c.ticker];
+                    el('ticker').innerHTML = doubled.map(item =>
+                        '<span class="ticker-item"><span class="ticker-dot"></span> ' + esc(item) + '</span>'
+                    ).join('');
+                }
+
+                // About sidebar
+                if (Array.isArray(c.about?.affiliations) && c.about.affiliations.length) {
+                    el('about-sidebar').innerHTML = c.about.affiliations.map(a =>
+                        '<div class="about-label">' + esc(a.label) + '</div>' +
+                        '<div class="about-affil">' + esc(a.name) + '</div>' +
+                        '<div class="about-affil-sub">' + esc(a.sub) + '</div>'
+                    ).join('');
+                }
+
+                // About body — paragraphs support inline HTML (bold, em, links)
+                if (Array.isArray(c.about?.paragraphs) && c.about.paragraphs.length) {
+                    el('about-body').innerHTML = c.about.paragraphs.map(p => '<p>' + p + '</p>').join('');
+                }
+
+                // Skills
+                if (Array.isArray(c.skills) && c.skills.length) {
+                    el('skills-layout').innerHTML = c.skills.map(s =>
+                        '<div class="skill-panel">' +
+                        '<div class="skill-panel-label">' + esc(s.category) + '</div>' +
+                        '<ul class="skill-list">' +
+                        s.items.map(i => '<li>' + esc(i) + '</li>').join('') +
+                        '</ul></div>'
+                    ).join('');
+                }
+
+                // Projects
+                if (Array.isArray(c.projects) && c.projects.length) {
+                    el('projects-list').innerHTML = c.projects.map((p, i) => {
+                        const num = String(i + 1).padStart(2, '0');
+                        const isExternal = p.href && p.href.startsWith('http');
+                        const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+                        const imgHtml = p.image
+                            ? '<img src="' + esc(p.image) + '" alt="' + esc(p.imageAlt || '') + '" loading="lazy" class="project-image-thumb">'
+                            : '';
+                        return '<a href="' + esc(p.href || '#') + '"' + targetAttr + ' class="project-item">' +
+                            '<span class="project-num">' + num + '</span>' +
+                            '<div class="project-body">' +
+                            '<div class="project-tag">' + esc(p.tag) + '</div>' +
+                            '<h3 class="project-title">' + esc(p.title) + '</h3>' +
+                            '<p class="project-desc">' + esc(p.desc) + '</p>' +
+                            '</div>' +
+                            imgHtml +
+                            '<span class="project-arrow">→</span>' +
+                            '</a>';
+                    }).join('');
+                }
+
+                // Contact intro — supports inline HTML (em, etc.)
+                if (c.contact?.intro) el('contact-intro').innerHTML = c.contact.intro;
+
+                // Contact links
+                if (Array.isArray(c.contact?.links) && c.contact.links.length) {
+                    el('contact-links').innerHTML = c.contact.links.map(l => {
+                        const isExternal = l.href && l.href.startsWith('http');
+                        const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+                        return '<a href="' + esc(l.href) + '"' + targetAttr + ' class="contact-link-item">' +
+                            '<span class="contact-link-label">' + esc(l.label) + '</span>' +
+                            '<span class="contact-link-value">' + esc(l.value) + '</span>' +
+                            '</a>';
+                    }).join('');
+                }
+
+                // Footer
+                if (c.footer?.name) el('footer-copyright').textContent = '© ' + new Date().getFullYear() + ' ' + c.footer.name;
+                if (c.footer?.tagline) el('footer-tagline').textContent = c.footer.tagline;
+            }
+
+            async function loadContent() {
+                try {
+                    const controller = new AbortController();
+                    const timeout = setTimeout(() => controller.abort(), 5000);
+                    const res = await fetch(CMS_URL + '/api/content', { signal: controller.signal });
+                    clearTimeout(timeout);
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const data = await res.json();
+                    renderContent(data);
+                } catch (e) {
+                    // Server unreachable — page already shows hardcoded defaults, nothing to do.
+                    if (e.name !== 'AbortError') {
+                        console.info('[CMS] Using embedded defaults.', e.message);
+                    }
+                }
+            }
+
+            loadContent();
+        })();
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
